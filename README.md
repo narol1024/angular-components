@@ -1,4 +1,4 @@
-# angular-ui
+# angular-components
 
 ### 简介
 基于angularJS 1.3+开发的UI组件或工具类，目前可使用的组件： 
@@ -17,4 +17,4 @@
 - angular-permission(权限控制工具类)
 
 ### 给我提bug
-以上组件已经应用到实际项目中，如果发现bug，欢迎 [在这里](https://github.com/linjinying/angular-ui/issues) 给我提bug。
+以上组件已经应用到实际项目中，如果发现bug，欢迎 [在这里](https://github.com/linjinying/angular-components/issues) 给我提bug。
