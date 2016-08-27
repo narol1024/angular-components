@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" href="../../libs/bootstrap-3.3.6/css/bootstrap.css">
+    <link rel="stylesheet" href="../dist/css/angular-pagination.css" />
+    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
+    <script src="../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../../libs/angular-bootstrap-1.3.2/ui-bootstrap-tpls-1.3.2.js"></script>
+    <script src="../dist/js/angular-pagination.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+    <angular-pagination query-list="queryList()" page="page"></angular-pagination>
+</body>
+<script>
+var app = angular.module("app", ["ui.bootstrap","ui.pagination"]);
+app.controller("ctrl", ["$scope", function($scope) {
+    $scope.page = {
+        totalCount: 100,
+        pageNo: 1,
+        totalPageCount: 10,
+        maxSize: 5,
+        pageSize: 10
+    };
+}]);
+</script>
+
+</html>

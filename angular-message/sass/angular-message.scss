@@ -1,0 +1,56 @@
+@charset "utf-8";
+/*蓝色*/
+$primary-color:#337ab7;
+/*成功色*/
+$success-color:#1ab394;
+/*危险色*/
+$danger-color:#d9534f;
+/*警告色*/
+$warning-color:#f0ad4e;
+
+.ui-message-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ui-message {
+    position: fixed;
+    top: 0;
+    padding: 6px 20px;
+    left: 50%;
+    background-color: $success-color;
+    color: #fff;
+    font-size: 16px;
+    animation:ani-cui-message 0.3s;
+    &.success{
+        background-color: $success-color;
+    }
+    &.error {
+        background-color: $danger-color;
+    }
+    &.loading{
+        background-color: $primary-color;
+    }
+    &.warning{
+        background-color: $warning-color;
+    }
+    .icon{
+        font-size: 14px;
+        margin-right:6px;
+    }
+}
+
+
+@keyframes ani-cui-message {
+    0% {
+        opacity:0;
+        transform: translate(0, -100px);
+    }
+    100% {
+        opacity:1;
+        transform: translate(0, 0);
+    }
+}

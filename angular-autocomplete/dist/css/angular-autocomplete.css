@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/**定义组件的主题颜色*/
+.autocomplete-suggestions { border: 1px solid #ccc; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); -webkit-animation: ani-autocomplete-suggestions 0.2s; -moz-animation: ani-autocomplete-suggestions 0.2s; animation: ani-autocomplete-suggestions 0.2s; }
+
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-suggestion strong { font-weight: bold; color: #1ab394; }
+
+.autocomplete-no-suggestion { padding: 2px 5px; }
+
+.autocomplete-selected { background: #F0F0F0; }
+
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { font-weight: bold; font-size: 16px; color: #000; display: block; border-bottom: 1px solid #000; }
+
+@-webkit-keyframes ani-autocomplete-suggestions { 0% { -webkit-transform: translate3d(0, -10px, 0); transform: translate3d(0, -10px, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+
+@-moz-keyframes ani-autocomplete-suggestions { 0% { -moz-transform: translate3d(0, -10px, 0); transform: translate3d(0, -10px, 0); }
+  100% { -moz-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+
+@keyframes ani-autocomplete-suggestions { 0% { -webkit-transform: translate3d(0, -10px, 0); -moz-transform: translate3d(0, -10px, 0); transform: translate3d(0, -10px, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }

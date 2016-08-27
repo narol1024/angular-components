@@ -1,0 +1,159 @@
+@charset "utf-8";
+$color:#1ab394;
+.angular-datetimepicker {
+    position: relative;
+    display: inline-block;
+    font-weight: normal;
+    margin-bottom: 0;
+    &::before {
+        position: absolute;
+        top: 7px;
+        right: 10px;
+        font-family: FontAwesome;
+        font-size: 14px;
+        content: "\f073";
+        color: #999;
+    }
+}
+
+.angular-datetimepicker-groupline {
+    font-weight: normal;
+    padding: 0 4px;
+}
+
+
+/**定义组件的主题颜色*/
+
+.datetimepicker {
+    animation: ani-datetimepicker 0.2s;
+    .datetimepicker-months,
+    .datetimepicker-years,
+    .datetimepicker-hours,
+    .datetimepicker-minutes {
+        .table-condensed {
+            td,
+            th {
+                width: 60px!important;
+                &.switch {
+                    width: 135px!important;
+                }
+            }
+            td {
+                .active {
+                    background-image: none;
+                    background-color: $color;
+                    border-radius: 0;
+                    color: #fff;
+                    &:hover {
+                        background-color: $color;
+                    }
+                    &:link,
+                    &:hover,
+                    &:active,
+                    &:visited {
+                        color: #fff!important;
+                    }
+                }
+                span {
+                    &:hover {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+    .table-condensed {
+        thead {
+            th {
+                height: 30px;
+                font-weight: normal!important;
+                &:link,
+                &:hover,
+                &:active,
+                &:visited {
+                    box-shadow: none;
+                }
+                &:hover {
+                    color: $color;
+                    background-color: #fff!important;
+                }
+            }
+        }
+        tbody {
+            td.day {
+                border: 1px solid #F1F1F1;
+                padding: 8px!important;
+                border-radius: 0;
+                &:hover {
+                    border-radius: 0;
+                }
+                &.today {
+                    background-image: none!important;
+                    background-color: #49c;
+                    border-radius: 0;
+                    color: #fff;
+                    border-width: 0;
+                    &.disabled {
+                        background-color: #ccc!important;
+                        &:hover {
+                            background-color: #ccc!important;
+                        }
+                    }
+                    &:hover {
+                        background-color: $color;
+                        border-width: 0;
+                    }
+                    &:link,
+                    &:hover,
+                    &:active,
+                    &:visited {
+                        color: #fff!important;
+                    }
+                }
+                &.active {
+                    background-image: none;
+                    background-color: $color;
+                    border-radius: 0;
+                    color: #fff;
+                    border-width: 0;
+                    &:hover {
+                        background-color: $color;
+                    }
+                    &:link,
+                    &:hover,
+                    &:active,
+                    &:visited {
+                        color: #fff!important;
+                    }
+                }
+            }
+        }
+    }
+    tfoot {
+        th {
+            padding: 8px 0 5px!important;
+            font-weight: 400;
+            font-size: 14px;
+            &:hover {
+                background-color: #fff!important;
+                color: $color;
+            }
+            &.clear.disabled {
+                cursor: not-allowed;
+                color: #ccc;
+                &:hover {
+                    color: #ccc;
+                }
+            }
+        }
+    }
+}
+
+@keyframes ani-datetimepicker {
+    0% {
+        transform: translate3d(0, -10px, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}

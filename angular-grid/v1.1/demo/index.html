@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" href="../../../libs/font-awesome-3.0.2/css/font-awesome.css" />
+    <link rel="stylesheet" href="../../../libs/bootstrap-3.3.6/css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/angular-grid.css" />
+    <script src="../../../libs/jquery-1.11.1/jquery.js"></script>
+    <script src="../../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../../../angular-datetime/dist/js/angular-datetime.js"></script>
+    <script src="../dist/js/angular-grid.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+    <angular-table table-params="dataTable"></angular-table>
+</body>
+<script>
+var app = angular.module("app", ["ui.grid"]);
+app.controller("ctrl", ['$scope', 'TableFactory', "$timeout", function($scope, TableFactory, $timeout) {
+    var tableOptions = {
+        settings: {
+            checkbox: true
+        },
+        options: {
+            name: {
+                ChineseName: "渠道名称",
+                width: "560"
+            },
+            updateOn: {
+                ChineseName: "最后更新时间",
+                width: "580",
+                formatDate: "yyyy-mm-dd hh:ii:ss"
+            },
+            remark: {
+                ChineseName: "备注",
+                width: "100"
+            },
+            test1: {
+                ChineseName: "test1",
+                width: "100",
+                toFixed:2
+            },
+            test2: {
+                ChineseName: "test2",
+                width: "500"
+            },
+            test3: {
+                ChineseName: "test3",
+                width: "100"
+            },
+            btnOperate: {
+                ChineseName: "操作",
+                width: "auto",
+                cellTemplate: function() {
+                    var editButtonHtml = "<button ng-click='gridScope.remove($rowScope);'>删除</button>";
+                    return editButtonHtml;
+                }
+            }
+        }
+    };
+    $scope.test = "测试";
+    var dataList = [{
+        id: 1,
+        name: "test",
+        updateOn: "1467010946113",
+        remark: "备注信息",
+        test1: "1235.5566",
+        test2: "test2",
+        test3: "test3"
+    }, {
+        name: "test2",
+        updateOn: "1467010964269",
+        remark: "备注信息2",
+        test1: "",
+        test2: "test2",
+        test3: "test3"
+    }, {
+        name: "test",
+        updateOn: "1467010946113",
+        remark: "备注信息",
+        test1: "1235.5566",
+        test2: "test2",
+        test3: "test3"
+    }, {
+        name: "test2",
+        updateOn: "1467010964269",
+        remark: "备注信息2",
+        test1: "1235.5566",
+        test2: "test2",
+        test3: "test3"
+    }, {
+        name: "test",
+        updateOn: "1467010946113",
+        remark: "备注信息",
+        test1: "1235.5566",
+        test2: "test2",
+        test3: "test3"
+    }];
+    $timeout(function() {
+        $scope.dataTable = TableFactory.createTable(tableOptions, dataList);
+    }, 1000);
+    $scope.edit = function(item,thisScope) {
+        item.test3 ="哈哈哈";
+        thisScope.refresh();
+    };
+    $scope.remove = function($rowScope){
+        $rowScope.remove();
+    };
+}]);
+</script>
+
+</html>

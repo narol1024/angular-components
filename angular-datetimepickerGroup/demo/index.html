@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" href="../../libs/font-awesome-3.0.2/css/font-awesome.css" />
+    <link rel="stylesheet" href="../../libs/bootstrap-3.3.6/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="../../angular-datetimepicker/dist/css/angular-datetimepicker.css" />
+    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
+    <script src="../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../../angular-datetime/dist/js/angular-datetime.js"></script>
+    <script src="../../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="../../libs/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../../angular-datetimepicker/dist/js/angular-datetimepicker.js"></script>
+    <script src="../dist/js/angular-datetimepickerGroup.js"></script>
+</head>
+
+<body style="margin:10px;" ng-app="app" ng-controller="ctrl">
+<datetimepicker-group options="dateTimeOptions" start-time="startTime" end-time="endTime" start-name="startTime" end-name="endTime"></datetimepicker-group>
+</body>
+<script>
+var app = angular.module("app", ["ui.datetimepickerGroup"]);
+app.controller("ctrl", ['$scope', function($scope) {
+    $scope.dateTimeOptions = {
+        limitOutTime:true,
+        limitEndTime: "2016-07-14"
+    }
+}]);
+</script>
+
+</html>

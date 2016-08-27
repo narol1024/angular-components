@@ -1,0 +1,12 @@
+.angular-pagination { text-align: center; margin-top: 20px; }
+.angular-pagination .pagination { margin: 10px 0; font-size: 12px; }
+.angular-pagination .pagination > li > a { color: #888; }
+.angular-pagination .pagination > .active > a { background-color: #1ab394; border-color: #089c7e; color: #fff; }
+.angular-pagination .addition-toolbar { margin-left: 5px; margin-right: 5px; }
+.angular-pagination .addition-toolbar .total-count:link, .angular-pagination .addition-toolbar .total-count:hover, .angular-pagination .addition-toolbar .total-count:active, .angular-pagination .addition-toolbar .total-count:visited { background-color: #fff; }
+.angular-pagination .addition-toolbar .jump-wrap { position: relative; padding-right: 50px; }
+.angular-pagination .addition-toolbar .jump-wrap:link, .angular-pagination .addition-toolbar .jump-wrap:hover, .angular-pagination .addition-toolbar .jump-wrap:active, .angular-pagination .addition-toolbar .jump-wrap:visited { background-color: #fff; cursor: default; }
+.angular-pagination .addition-toolbar .jump-wrap .jump-input { display: inline-block; }
+.angular-pagination .addition-toolbar .jump-wrap .jump-input input { width: 40px; height: 17px; border: 1px solid #ddd; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; padding: 0 2px; }
+.angular-pagination .addition-toolbar .jump-wrap .jump-submit { position: absolute; top: 0; right: 0; width: 45px; height: 100%; padding-top: 6px; border-left: 1px solid #ddd; }
+.angular-pagination .addition-toolbar .jump-wrap .jump-submit:hover { background-color: #f1f1f1; }

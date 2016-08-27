@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" href="../../libs/font-awesome-3.0.2/css/font-awesome.css" />
+    <link rel="stylesheet" href="../../libs/bootstrap-3.3.6/css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/angular-confirm.css" />
+    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
+    <script src="../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../../libs/angular-bootstrap-1.3.2/ui-bootstrap-tpls-1.3.2.js"></script>
+    <script src="../dist/js/angular-confirm.js"></script>
+</head>
+
+<body style="margin:10px;" ng-app="app" ng-controller="ctrl">
+    <p>基本设置：</p>
+    <button class="btn btn-default" ng-click="confirm()">确认</button>
+    <p>直接在按钮设置指令：</p>
+    <button class="btn btn-danger" ng-click="refuse()" confirm="确认拒绝吗？" confirm-ok="确定" confirm-cancel="取消" confirm-ok-color="danger" confirm-title="确认消息">拒绝</button>
+</body>
+<script>
+var app = angular.module("app", ["ui.bootstrap", "ui.confirm"]);
+app.controller("ctrl", ['$scope', '$confirm',function($scope,$confirm) {
+    $scope.confirm = function() {
+        $confirm({
+            text: "您确认了吗？",
+            confirmOk: "确定",
+            confirmTitle: "提示",
+            confirmCancel: "取消",
+            confirmOkColor: "danger"
+        }).then(function () {
+          alert("确认了");
+        }, function () {
+          alert("取消了");
+        });
+    };
+    $scope.refuse = function(){
+        alert("已拒绝")
+    };
+}]);
+</script>
+
+</html>

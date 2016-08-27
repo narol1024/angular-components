@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*蓝色*/
+/*成功色*/
+/*危险色*/
+/*警告色*/
+.ui-message-mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
+
+.ui-message { position: fixed; top: 0; padding: 6px 20px; left: 50%; background-color: #1ab394; color: #fff; font-size: 16px; animation: ani-cui-message 0.3s; }
+.ui-message.success { background-color: #1ab394; }
+.ui-message.error { background-color: #d9534f; }
+.ui-message.loading { background-color: #337ab7; }
+.ui-message.warning { background-color: #f0ad4e; }
+.ui-message .icon { font-size: 14px; margin-right: 6px; }
+
+@keyframes ani-cui-message { 0% { opacity: 0; transform: translate(0, -100px); }
+  100% { opacity: 1; transform: translate(0, 0); } }

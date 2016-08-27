@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<script src="../../libs/angular-1.4.8/angular.js"></script>
+	<script src="../dist/js/angular-datetime.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <p ng-bind="datetime"></p>
+</body>
+<script>
+var app = angular.module("app", ['ngDatetime']);
+app.controller("ctrl", ['dateTimeFactory', "$scope",function(dateTimeFactory,$scope) {
+	$scope.datetime = dateTimeFactory.format(new Date(),'yyyy-mm-dd');
+}]);
+</script>
+</body>
+</html>

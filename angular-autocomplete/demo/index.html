@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" href="../../angular-autocomplete/css/angular-autocomplete.css">
+    <script src="../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
+    <script src="../../libs/jQuery-Autocomplete-1.2.24/jquery.autocomplete.js"></script>
+    <script src="../dist/js/angular-autocomplete.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+    <input ng-model="loginName" type="text" name="loginName" angular-autocomplete autocomplete-Options="loginNameOptions" placeholder="请输入用户名" />
+</body>
+<script>
+var app = angular.module("app", ["ui.autocomplete"]);
+app.controller("ctrl", ["$scope", function($scope) {
+    $scope.loginName = "test";
+    var countries = [{
+        value: 'Andorra',
+        data: 'AD'
+    }, {
+        value: 'Zimbabwe',
+        data: 'ZZ'
+    }, {
+        value: 'dada',
+        data: 'ZZ'
+    }];
+    $scope.loginNameOptions = {
+        paramName: "q",
+        //serviceUrl: '/uws/promotion/autoCompleteEnterpriseUser',
+        lookup: countries,
+        dataType: "json",
+        noCache: true,
+        deferRequestBy: 300,
+        transformResult: function(response) {
+            return {
+                suggestions: $.map(response.data, function(dataItem) {
+                    return {
+                        value: dataItem.value,
+                        data: dataItem.key
+                    };
+                })
+            };
+        },
+        onSelectCallback:function(suggestion){
+            console.log(suggestion);
+        },
+        onSearchCompleteCallback:function(query, suggestions){
+            console.log(query, suggestions);
+        }
+    }
+}]);
+</script>
+
+</html>

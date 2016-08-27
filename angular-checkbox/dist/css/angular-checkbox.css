@@ -1,0 +1,7 @@
+@charset "UTF-8";
+/**定义组件的主题颜色*/
+.angular-checkbox { display: inline-block; vertical-align: middle; color: #333; margin-bottom: 5px; min-width: 120px; cursor: pointer; }
+.angular-checkbox[disabled] { cursor: not-allowed; color: #ccc; }
+.angular-checkbox .icon { display: inline-block; vertical-align: middle; font-size: 18px; margin-right: 4px; cursor: pointer; }
+.angular-checkbox .icon-check { color: #1ab394; }
+.angular-checkbox .text { display: inline-block; vertical-align: middle; cursor: pointer; }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" href="./libs/font-awesome-3.0.2/css/font-awesome.css" />
+    <link rel="stylesheet" href="../dist/css/angular-message.css" />
+    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
+    <script src="../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../dist/js/angular-message.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+
+</body>
+<script>
+    var app = angular.module("app",["ui.message"]);
+    app.controller("ctrl",["$messageFactory",function($messageFactory){
+        $messageFactory.popMessage({
+            message: "加载中",
+            type:2,
+            mask: true,
+            time:2000
+        });
+    }]);
+</script>
+</html>

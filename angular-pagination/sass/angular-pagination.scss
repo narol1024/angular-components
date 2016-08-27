@@ -1,0 +1,66 @@
+@charset "utf-8";
+$color:#1ab394;
+$color-bold:#089c7e;
+.angular-pagination {
+    text-align: center;
+    margin-top: 20px;
+    .pagination {
+        margin: 10px 0;
+        font-size: 12px;
+        &>li>a {
+            color: #888;
+        }
+        &>.active>a {
+            background-color: $color;
+            border-color: $color-bold;
+            color: #fff;
+            &:focus {}
+            &:hover {}
+        }
+    }
+    .addition-toolbar {
+        margin-left: 5px;
+        margin-right: 5px;
+        .total-count {
+            &:link,
+            &:hover,
+            &:active,
+            &:visited {
+                background-color: #fff;
+            }
+        }
+        .jump-wrap {
+            position: relative;
+            padding-right: 50px;
+            &:link,
+            &:hover,
+            &:active,
+            &:visited {
+                background-color: #fff;
+                cursor: default;
+            }
+            .jump-input {
+                display: inline-block;
+                input {
+                    width: 40px;
+                    height: 17px;
+                    border: 1px solid #ddd;
+                    border-radius: 2px;
+                    padding: 0 2px;
+                }
+            }
+            .jump-submit {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 45px;
+                height: 100%;
+                padding-top: 6px;
+                border-left: 1px solid #ddd;
+                &:hover{
+                    background-color: #f1f1f1;
+                }
+            }
+        }
+    }
+}
