@@ -2,12 +2,14 @@ angular.module("ui.autocomplete",[]).directive('angularAutocomplete', [function(
     return {
         restrict: 'EA',
         scope: {
-            autocompleteOptions: "="
+            autocompleteOptions: "=angularAutocomplete"
         },
         require: '?ngModel',
         link: function(scope, element, attr, ngModel) {
-            var options = angular.extend(scope.autocompleteOptions, {
-                noCache:true,
+            var scopeAutocompleteOptions = scope.autocompleteOptions;
+            var autocompleteOptions = angular.extend({},scopeAutocompleteOptions);
+            //set model value
+            var options = angular.extend(autocompleteOptions, {
                 onSelect: function(suggestion) {
                     var value = suggestion.value;
                     if (ngModel.$modelValue !== value) {
@@ -15,13 +17,8 @@ angular.module("ui.autocomplete",[]).directive('angularAutocomplete', [function(
                             ngModel.$setViewValue(value);
                         });
                     }
-                    if (angular.isFunction(scope.autocompleteOptions.onSelectCallback)) {
-                        scope.autocompleteOptions.onSelectCallback(suggestion);
-                    }
-                },
-                onSearchComplete: function(query, suggestions) {
-                    if (angular.isFunction(scope.autocompleteOptions.onSearchCompleteCallback)) {
-                        scope.autocompleteOptions.onSearchCompleteCallback(query, suggestions);
+                    if (angular.isFunction(scopeAutocompleteOptions.onSelect)) {
+                        scopeAutocompleteOptions.onSelect(suggestion);
                     }
                 }
             });

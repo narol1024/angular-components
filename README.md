@@ -3,7 +3,7 @@
 ### 简介
 基于angularJS 1.3+开发的UI组件或工具类，目前可使用的组件： 
 
-- angular-autocomplete(表单输入提示)
+- [angular-autocomplete](https://github.com/linjinying/angular-components/tree/master/angular-autocomplete)(表单输入提示)
 - angular-checkbox(复选框)
 - angular-colorpicker(颜色选择器)
 - angular-confirm(确认提示框)

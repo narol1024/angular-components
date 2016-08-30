@@ -1,14 +1,10 @@
 ## angular-autocomplete
-### 版本
-version 1.0.0
+### demo
+[click here](http://www.w3cin.com/demo/angular-components/angular-autocomplete/demo/)
 
 ### 说明
 
-一个基于jQuery-Autocomplete插件的angular组件，目前支持的功能：  
-
-- **basic-options**  jQuery-Autocomplete的基本配置
-- **onSelectCallback** 选中项的callback函数
-- **onSearchCompleteCallback** 搜索完成的callback函数
+一个基于jQuery-Autocomplete的angular wrapper组件。理论上，支持jQuery-Autocomplete的所有功能。
 
 
 ### 依赖
@@ -30,43 +26,24 @@ version 1.0.0
 ```javascript
 var app = angular.module("app", ["ui.autocomplete"]);
 app.controller("ctrl", ["$scope", function($scope) {
-    $scope.loginName = "test";
     var countries = [{
-        value: 'Andorra',
-        data: 'AD'
+        value: 'autocomplete',
+        data: '1'
     }, {
-        value: 'Zimbabwe',
-        data: 'ZZ'
+        value: 'jquery',
+        data: '2'
     }, {
-        value: 'dada',
-        data: 'ZZ'
+        value: 'angular',
+        data: '3'
     }];
-    $scope.loginNameOptions = {
-        paramName: "q",
-        //serviceUrl: '/uws/promotion/autoCompleteEnterpriseUser',
+    $scope.options = {
         lookup: countries,
         dataType: "json",
         noCache: true,
         deferRequestBy: 300,
-        transformResult: function(response) {
-            return {
-                suggestions: $.map(response.data, function(dataItem) {
-                    return {
-                        value: dataItem.value,
-                        data: dataItem.key
-                    };
-                })
-            };
-        },
-        onSelectCallback:function(suggestion){
-            console.log(suggestion);
-        },
-        onSearchCompleteCallback:function(query, suggestions){
-            console.log(query, suggestions);
+        onSelect:function(suggestion){
+           console.log(suggestion);
         }
-    }
+    };
 }]);
 ```
-
-### future
-根据业务需求，参考jQuery-Autocomplete插件扩展功能。

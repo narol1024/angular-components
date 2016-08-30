@@ -17,6 +17,7 @@ gulp.task('compass', function() {
             browsers: ['Firefox >= 1', 'Chrome >= 1', 'ie >= 7'],
             cascade: true
         }))
+        .pipe(gulp.dest('./css/'))
         .pipe(gulp.dest('./dist/css/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
