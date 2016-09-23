@@ -1,6 +1,6 @@
 ## angular-autocomplete
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-autocomplete/demo/)
+[click here](http://www.w3cin.com/demo/angular-components/angular-autocomplete/)
 
 ### 说明
 
@@ -19,7 +19,7 @@
 **html代码**
 ```html
 <div ng-app="app" ng-controller="ctrl">
-    <input ng-model="loginName" type="text" name="loginName" angular-autocomplete autocomplete-Options="loginNameOptions" placeholder="请输入用户名" />
+    <input ng-model="text" type="text" angular-autocomplete="options" placeholder="请输入关键字" />
 </div>
 ```
 **angular代码**

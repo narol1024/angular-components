@@ -4,26 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>demo</title>
-    <link rel="stylesheet" href="../../libs/font-awesome-3.0.2/css/font-awesome.css" />
     <link rel="stylesheet" href="../css/angular-checkbox.css" />
-    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
-    <script src="../../libs/angular-1.4.8/angular.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
     <script src="../dist/js/angular-checkbox.js"></script>
 </head>
 
 <body ng-app="app" ng-controller="ctrl">
-    <angular-checkbox ng-model="checkbox.checked" default-value="false" target-value="true" check-text="{{checkbox.name}}" on-check="check(checkbox)"></angular-checkbox>{{checkbox.checked}}
+    <input angular-checkbox="options" class="angular-checkbox" type="checkbox" name="checkbox" ng-model="checked" ng-true-value="'YES'" ng-false-value="'NO'"/>
+    <h3>{{checked}}</h3>
 </body>
 <script>
 var app = angular.module("app", ["ui.checkbox"]);
 app.controller("ctrl", ['$scope', function($scope) {
-    $scope.checkbox = {
-        checked:false,
-        name:"点我"
-    };
-    $scope.check = function(item){
-        console.info(item);
-    };
+    $scope.checked = "YES";
+    $scope.options = {
+        text:"click me!",
+        onCheck:function(){
+        }
+    }
 }]);
 </script>
 

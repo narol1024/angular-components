@@ -1,29 +1,131 @@
 @charset "utf-8";
-$color:#1ab394;/**定义组件的主题颜色*/
+$color:#1ab394;
+
+/**定义组件的主题颜色*/
+
+// .angular-checkbox {
+//     display: inline-block;
+//     vertical-align: middle;
+//     color: #333;
+//     margin-bottom: 5px;
+//     min-width: 120px;
+//     cursor: pointer;
+//     &[disabled] {
+//         cursor: not-allowed;
+//         color: #ccc;
+//     }
+//     .icon {
+//         display: inline-block;
+//         vertical-align: middle;
+//         font-size: 18px;
+//         margin-right: 4px;
+//         cursor: pointer;
+//     }
+//     .icon-check {
+//         color: $color;
+//     }
+//     .text{
+//         display: inline-block;
+//         vertical-align: middle;
+//         cursor: pointer;
+//     }
+// }
+$angular-checkbox-size: 16px !default;
+$magic-dot-size: 8px !default;
+$magic-border-color: #1ab394 !default;
+$magic-main-color: #1ab394 !default;
+$magic-disabled-color: #e4e4e4 !default;
 .angular-checkbox {
+    position: absolute;
+    display: none;
+}
+
+.angular-checkbox[disabled] {
+    cursor: not-allowed;
+}
+
+.angular-checkbox + label {
+    position: relative;
     display: inline-block;
-    vertical-align: middle;
-    color: #333;
-    margin-bottom: 5px;
-    min-width: 120px;
     cursor: pointer;
-    &[disabled] {
-        cursor: not-allowed;
-        color: #ccc;
-    }
-    .icon {
+    &:before {
         display: inline-block;
         vertical-align: middle;
-        font-size: 18px;
-        margin-right: 4px;
-        cursor: pointer;
+        width: $angular-checkbox-size;
+        height: $angular-checkbox-size;
+        content: '';
+        border: 1px solid $magic-border-color;
+        box-sizing: border-box;
     }
-    .icon-check {
-        color: $color;
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        content: '';
     }
     .text{
         display: inline-block;
         vertical-align: middle;
-        cursor: pointer;
+        margin-left: 6px;
+    }
+}
+
+.angular-checkbox[disabled] + label {
+    cursor: not-allowed;
+    color: $magic-disabled-color;
+    &:hover,
+    &:before,
+    &:after {
+        cursor: not-allowed;
+    }
+    &:hover {
+        &:before {
+            border: 1px solid $magic-disabled-color;
+            animation-name: none;
+        }
+    }
+    &:before {
+        border-color: $magic-disabled-color;
+    }
+}
+
+.angular-checkbox:checked + label {
+    &:before {
+        animation-name: none;
+    }
+    &:after {
+        display: block;
+    }
+}
+
+.angular-checkbox + label {
+    &:before {
+        border-radius: 3px;
+    }
+    &:after {
+        top: 4px;
+        left: 5px;
+        box-sizing: border-box;
+        width: 6px;
+        height: 10px;
+        transform: rotate(45deg);
+        border:2px solid #fff;
+        border-top: 0;
+        border-left: 0;
+    }
+}
+
+.angular-checkbox:checked + label {
+    &:before {
+        border: $magic-main-color;
+        background: $magic-main-color;
+    }
+}
+
+.angular-checkbox:checked[disabled] + label {
+    &:before {
+        border: $magic-disabled-color;
+        background: $magic-disabled-color;
     }
 }
