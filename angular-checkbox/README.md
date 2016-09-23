@@ -1,6 +1,6 @@
 ## angular-checkbox
-### 版本
-version 1.0.0
+### demo
+[click here](http://www.w3cin.com/demo/angular-components/angular-checkbox/)
 
 ### 说明
 一个基于angular的checkbox组件，目前支持的功能：  
