@@ -13,7 +13,7 @@
 - angular-itempicker(左右栏穿梭)
 - angular-message(消息提示)
 - angular-pagination(分页)
-- angular-datetime(时间工具类)
+- [angular-datetime](https://github.com/linjinying/angular-components/tree/master/angular-datetime)(时间工具类)
 - angular-permission(权限控制工具类)
 
 ### 给我提bug

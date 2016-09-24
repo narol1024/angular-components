@@ -3,16 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>demo</title>
-	<script src="../../libs/angular-1.4.8/angular.js"></script>
+	<script src="../bower_components/angular/angular.js"></script>
 	<script src="../dist/js/angular-datetime.js"></script>
 </head>
 <body ng-app="app" ng-controller="ctrl">
-    <p ng-bind="datetime"></p>
+    <p>
+    	<b>当前时间：</b><span ng-bind="currentTime"></span>
+    </p>
+    <p>
+    	<b>上个月：</b><span ng-bind="prevMonthTime"></span>
+    </p>
+    <p>
+    	<b>下个月：</b><span ng-bind="nextMonthTime"></span>
+    </p>
+    <p>
+    	<b>昨天：</b><span ng-bind="prevDateTime"></span>
+    </p>
+    <p>
+    	<b>明天：</b><span ng-bind="nextDateTime"></span>
+    </p>
 </body>
 <script>
 var app = angular.module("app", ['ngDatetime']);
 app.controller("ctrl", ['dateTimeFactory', "$scope",function(dateTimeFactory,$scope) {
-	$scope.datetime = dateTimeFactory.format(new Date(),'yyyy-mm-dd');
+	$scope.currentTime = dateTimeFactory.format(new Date(),'yyyy-mm-dd');
+	$scope.prevMonthTime = dateTimeFactory.getSomeMonth(new Date(),-1,'yyyy-mm-dd');
+	$scope.nextMonthTime = dateTimeFactory.getSomeMonth(new Date(),1,'yyyy-mm-dd');
+	$scope.prevDateTime = dateTimeFactory.getSomeDate(new Date(),-1,'yyyy-mm-dd');
+	$scope.nextDateTime = dateTimeFactory.getSomeDate(new Date(),1,'yyyy-mm-dd');
 }]);
 </script>
 </body>
