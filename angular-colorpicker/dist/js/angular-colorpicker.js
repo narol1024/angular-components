@@ -358,7 +358,6 @@ angular.module('ui.colorpicker', [])
             ];
             $scope.historyColorboxs = [];
             var languageWords = $language[attrs.colorLanguage || "zh-cn"];
-            console.info(languageWords);
             var thisFormat = (attrs.colorType || "hex");
             var cookieName = 'historyColor-' + thisFormat;
             var target = angular.element(document.body);

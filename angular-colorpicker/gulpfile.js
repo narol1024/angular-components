@@ -1,37 +1,49 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var uglify = require('gulp-uglify');
+var compass = require('gulp-compass');
+var uglifyjs = require('gulp-uglify');
+var minifycss = require('gulp-minify-css');
+var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
-
-gulp.task('sass', function() {
-    gulp.src('./src/sass/*.scss')
-        .pipe(sass().on('error', sass.logError))
+var connect = require('gulp-connect');
+var sassFolder = ['./src/sass/**/*.scss'];
+var jsFolder = ['./src/js/*.js'];
+gulp.task('compass', function() {
+    return gulp.src(sassFolder)
+        .pipe(compass({
+            config_file: './config.rb',
+            css: './src/css',
+            sass: './src/sass'
+        }))
+        .pipe(autoprefixer({
+            browsers: ['Firefox >= 1', 'Chrome >= 1', 'ie >= 7'],
+            cascade: true
+        }))
         .pipe(gulp.dest('./src/css/'))
         .pipe(gulp.dest('./dist/css/'))
-        .pipe(minifyCss())
-        .pipe(rename({
-            suffix: '.min'
-        }))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(minifycss())
         .pipe(gulp.dest('./dist/css/'));
 });
-gulp.task('sass:watch', function() {
-    gulp.watch('./src/sass/*.scss', ['sass']);
+gulp.task('uglifyjs', function() {
+    return gulp.src(jsFolder)
+        .pipe(gulp.dest('./dist/js/'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglifyjs())
+        .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('minifyjs',function(){
-	return gulp.src('./src/js/*js')
-		.pipe(gulp.dest('./dist/js/'))
-		.pipe(uglify())
-		.pipe(rename({suffix:'.min'}))
-		.pipe(gulp.dest('./dist/js/'));
-});
-gulp.task('minifyjs:watch', function() {
-    gulp.watch('./src/js/*js', ['minifyjs']);
+gulp.task('connect', function() {
+    connect.server({
+        root: '../',
+        port: 9999,
+        host: 'localhost'
+    });
 });
 
-
-//默认Gulp
-gulp.task('default', ['sass:watch','minifyjs:watch'], function() {
-    console.info("Gulp Start!");
+gulp.task('start', function() {
+    gulp.watch(sassFolder, ['compass']);
+    gulp.watch(jsFolder, ['uglifyjs']);
+    gulp.start('uglifyjs');
+    gulp.start('connect');
 });
+gulp.task('default', ['start']);

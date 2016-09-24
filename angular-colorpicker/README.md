@@ -1,7 +1,7 @@
 ### angular-colorpicker v1.1.0
 
 #### Demo
-[click here](http://w3cin.com/demo/angular-colorpicker/example/index.html)
+[click here](http://w3cin.com/demo/angular-components/angular-colorpicker/)
 
 一个基于angularJS的颜色选择器，目前具备以下特性：
 - **3种选色模式**  经典模式、自定义选择模式、历史记录
@@ -15,7 +15,7 @@ a beautiful color picker based on angularJS.It supports the following features:
 
 #### Requirements
 - **jquery**
-- **angular 1.3.x**（one-time binding）
+- **angular 1.3.x +**（one-time binding）
 
 #### Install
 > bower install angular-colorpicker

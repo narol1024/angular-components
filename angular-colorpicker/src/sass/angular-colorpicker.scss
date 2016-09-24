@@ -44,6 +44,7 @@
         }
     }
     &.position-top{
+        animation:ani-colorpicker-left 0.2s;
         .colorpicker-caret {
             position: absolute;
             bottom: 26px;
@@ -77,6 +78,7 @@
         }
     }
     &.position-left{
+        animation:ani-colorpicker-left 0.2s;
         .colorpicker-caret {
             position: absolute;
             top: 11px;
@@ -110,6 +112,7 @@
         }
     }
     &.position-bottom{
+        animation:ani-colorpicker-right 0.2s;
         .colorpicker-caret {
             position: absolute;
             bottom: 26px;
@@ -143,6 +146,7 @@
         }
     }
     &.position-right {
+        animation:ani-colorpicker-right 0.2s;
         .colorpicker-caret {
             position: absolute;
             top: 11px;
@@ -418,5 +422,26 @@
     &:focus {
         border-bottom: 1px solid #49c;
         box-shadow: 0 1px 0 #49c;
+    }
+}
+
+@keyframes ani-colorpicker-right{
+    0%{
+        transform: translate(-5px,0);
+        opacity: 0;
+    }
+    100%{
+        transform: translate(0,0);
+        opacity: 1;
+    }
+}
+@keyframes ani-colorpicker-left{
+    0%{
+        transform: translate(5px,0);
+        opacity: 0;
+    }
+    100%{
+        transform: translate(0,0);
+        opacity: 1;
     }
 }
