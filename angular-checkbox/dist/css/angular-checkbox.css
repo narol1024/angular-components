@@ -1,5 +1,3 @@
-@charset "UTF-8";
-/**定义组件的主题颜色*/
 .angular-checkbox { position: absolute; display: none; }
 
 .angular-checkbox[disabled] { cursor: not-allowed; }

@@ -1,35 +1,4 @@
 @charset "utf-8";
-$color:#1ab394;
-
-/**定义组件的主题颜色*/
-
-// .angular-checkbox {
-//     display: inline-block;
-//     vertical-align: middle;
-//     color: #333;
-//     margin-bottom: 5px;
-//     min-width: 120px;
-//     cursor: pointer;
-//     &[disabled] {
-//         cursor: not-allowed;
-//         color: #ccc;
-//     }
-//     .icon {
-//         display: inline-block;
-//         vertical-align: middle;
-//         font-size: 18px;
-//         margin-right: 4px;
-//         cursor: pointer;
-//     }
-//     .icon-check {
-//         color: $color;
-//     }
-//     .text{
-//         display: inline-block;
-//         vertical-align: middle;
-//         cursor: pointer;
-//     }
-// }
 $angular-checkbox-size: 16px !default;
 $magic-dot-size: 8px !default;
 $magic-border-color: #1ab394 !default;

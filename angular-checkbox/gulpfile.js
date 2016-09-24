@@ -5,19 +5,20 @@ var minifycss = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var connect = require('gulp-connect');
-var sassFolder = ['./sass/**/*.scss'];
-var jsFolder = ['./js/*.js'];
+var sassFolder = ['./src/sass/**/*.scss'];
+var jsFolder = ['./src/js/*.js'];
 gulp.task('compass', function() {
     return gulp.src(sassFolder)
         .pipe(compass({
             config_file: './config.rb',
-            sass: './sass'
+            css: './src/css',
+            sass: './src/sass'
         }))
         .pipe(autoprefixer({
             browsers: ['Firefox >= 1', 'Chrome >= 1', 'ie >= 7'],
             cascade: true
         }))
-        .pipe(gulp.dest('./css/'))
+        .pipe(gulp.dest('./src/css/'))
         .pipe(gulp.dest('./dist/css/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
