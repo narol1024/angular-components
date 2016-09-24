@@ -64,9 +64,9 @@ angular.module("ngDatetime", [])
             return format;
         };
         /*
-        *获取某日期的前后n天
+        *获取某日期的前后count天
         *@date 时间对象
-        *@count 前后n天，正数为当前时间之后，负数为当前时间之前
+        *@count 前后count天，正数为当前时间之后，负数为当前时间之前
         *@format 格式化时间
          */
         DateTime.getSomeDate = function(date, count,format) {
@@ -80,9 +80,9 @@ angular.module("ngDatetime", [])
             }
         };
         /*
-        * 获取某日期的前后n月
+        * 获取某日期的前后count月
         *@date 时间对象
-        *@count 前后n月，正数为当前时间之后，负数为当前时间之前
+        *@count 前后count月，正数为当前时间之后，负数为当前时间之前
         *@format 格式化时间
          */
         DateTime.getSomeMonth = function(date, count, format) {
