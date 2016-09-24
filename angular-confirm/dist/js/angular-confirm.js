@@ -17,20 +17,21 @@ angular.module('ui.confirm', ['ui.bootstrap.modal'])
     .value('$confirmModalDefaults', {
         size: 'md',
         windowClass: 'modal-confirm',
-        template: function() {
-            var modalHeader = '<div class="modal-header" ng-show="data.confirmTitle"><h3 class="modal-title">{{data.confirmTitle}}</h3></div>';
-            var modalBody = '<div class="modal-body"><span class="icon-warning-sign icon"></span><span class="text">{{data.text}}</span></div>';
-            var modalFooter = '<div class="modal-footer">' +
-                '<button class="btn btn-{{data.confirmOkColor}}" ng-show="data.confirmOk" ng-click="ok()"><span class="icon icon-ok"></span>{{data.confirmOk}}</button>' +
-                '<button class="btn btn-{{data.confirmCancelColor}}" ng-show="data.confirmCancel" ng-click="cancel()"><span class="icon icon-reply"></span>{{data.confirmCancel}}</button>' +
-                '</div>';
-            return modalHeader + modalBody + modalFooter;
-        },
+        template: '<div class="modal-header" ng-show="data.confirmTitle">' +
+            '   <h4 class="modal-title">{{data.confirmTitle}}</h4>' +
+            '</div>' +
+            '<div class="modal-body">' +
+            '<span class="text">{{data.text}}</span>' +
+            '</div>' +
+            '<div class="modal-footer">' +
+            '   <button class="btn btn-{{data.confirmOkColor}}" ng-show="data.confirmOk" ng-click="ok()">{{data.confirmOk}}</button>' +
+            '   <button class="btn btn-{{data.confirmCancelColor}}" ng-show="data.confirmCancel" ng-click="cancel()"></span>{{data.confirmCancel}}</button>' +
+            '</div>',
         controller: 'ConfirmModalController',
         defaultLabels: {
             confirmOkColor: 'primary',
-            confirmTitle:"确认",
-            confirmOk:"确定",
+            confirmTitle: "确认",
+            confirmOk: "确定",
             confirmCancelColor: 'default'
         }
     })
@@ -67,10 +68,10 @@ angular.module('ui.confirm', ['ui.bootstrap.modal'])
                     var data = {
                         text: scope.confirm,
                         confirmTitle: scope.confirmTitle,
-                        confirmOk:scope.confirmOk,
-                        confirmCancel:scope.confirmCancel || false,
-                        confirmOkColor:scope.confirmOkColor || 'primary',
-                        confirmCancelColor:scope.confirmCancelColor || 'default'
+                        confirmOk: scope.confirmOk,
+                        confirmCancel: scope.confirmCancel || false,
+                        confirmOkColor: scope.confirmOkColor || 'primary',
+                        confirmCancelColor: scope.confirmCancelColor || 'default'
                     };
                     $confirm(data, angular.extend({}, scope.confirmSettings)).then(scope.ngClick);
                 });

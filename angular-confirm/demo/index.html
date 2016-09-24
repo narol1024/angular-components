@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>demo</title>
-    <link rel="stylesheet" href="../../libs/font-awesome-3.0.2/css/font-awesome.css" />
-    <link rel="stylesheet" href="../../libs/bootstrap-3.3.6/css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/angular-confirm.css" />
-    <script src="../../libs/jquery-1.11.1/jquery.js"></script>
-    <script src="../../libs/angular-1.4.8/angular.js"></script>
-    <script src="../../libs/angular-bootstrap-1.3.2/ui-bootstrap-tpls-1.3.2.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../dist/css/angular-confirm.css" />
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../dist/js/angular-confirm.js"></script>
 </head>
 
@@ -17,7 +15,7 @@
     <p>基本设置：</p>
     <button class="btn btn-default" ng-click="confirm()">确认</button>
     <p>直接在按钮设置指令：</p>
-    <button class="btn btn-danger" ng-click="refuse()" confirm="确认拒绝吗？" confirm-ok="确定" confirm-cancel="取消" confirm-ok-color="danger" confirm-title="确认消息">拒绝</button>
+    <button class="btn btn-default" ng-click="refuse()" confirm="确认拒绝吗？" confirm-ok="确定" confirm-cancel="取消" confirm-ok-color="danger" confirm-title="确认消息">拒绝</button>
 </body>
 <script>
 var app = angular.module("app", ["ui.bootstrap", "ui.confirm"]);

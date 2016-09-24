@@ -1,7 +1,8 @@
 ## angular-confirm
-### 版本
-version 1.0.0
+![angular-confirm](https://github.com/linjinying/angular-components/blob/master/angular-confirm/screenshot.png)  
 
+### demo
+[click here](http://www.w3cin.com/demo/angular-components/angular-confirm/)
 ### 说明
 一个基于angular、angular-bootstrap的确认框组件，目前支持的API有：  
 
@@ -16,8 +17,7 @@ version 1.0.0
 ### 依赖
 - angular
 - bootstrap.css
-- angular-bootstrap
-- font-awesome(用于图标)  
+- angular-bootstrap 
 
 ### 使用方式
 #### 1.直接在HTML上使用
@@ -64,5 +64,3 @@ app.controller("ctrl", ['$scope', '$confirm',function($scope,$confirm) {
     };
 }]);
 ```
-### future
-根据业务需求，自己扩展功能。
