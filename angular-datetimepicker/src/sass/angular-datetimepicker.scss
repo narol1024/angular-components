@@ -1,0 +1,119 @@
+@charset "utf-8";
+$primaryColor:#3498db;
+$primaryColorMore:#108ee2;
+$color:#1ab394;
+$colorMore:#07ab89;
+.angular-datetimepicker-groupline {
+    font-weight: normal;
+    padding: 0 4px;
+}
+
+
+.datetimepicker {
+    padding-top:10px;
+    .datetimepicker-days,
+    .datetimepicker-months,
+    .datetimepicker-years,
+    .datetimepicker-hours,
+    .datetimepicker-minutes {
+        .table-condensed {
+            width: 240px;
+            thead {
+                .prev {
+                    .i-arrow-left {
+                        width: 0;
+                        height: 0;
+                        border-top: 5px solid transparent;
+                        border-right: 5px solid #bbb;
+                        border-bottom: 5px solid transparent;
+                    }
+                }
+                .switch {
+                    font-size: 15px;
+                }
+                .next {
+                    .i-arrow-right {
+                        width: 0;
+                        height: 0;
+                        border-top: 5px solid transparent;
+                        border-left: 5px solid #bbb;
+                        border-bottom: 5px solid transparent;
+                    }
+                }
+                .dow {
+                    font-size: 13px;
+                }
+            }
+            tbody {
+                td {
+                    &.active,
+                    .active {
+                        background-image: none;
+                        background-color: $color;
+                        border-radius: 0;
+                        color: #fff;
+                        &:hover {
+                            background-color: $colorMore;
+                        }
+                        &:link,
+                        &:hover,
+                        &:active,
+                        &:visited {
+                            color: #fff;
+                        }
+                    }
+                    &.disabled,.disabled {
+                        background-color: #fff!important;
+                        background-image: none;
+                        color:#999;
+                        &:hover {
+                            background-image: none;
+                            background-color: #fff!important;
+                            color:#999;
+                        }
+                    }
+                    &:hover {
+                        border-width: 0;
+                    }
+                }
+            }
+            tfoot {
+                .border-top {
+                    height: 6px;
+                    padding: 0;
+                }
+                th {
+                    padding: 8px 0 5px;
+                    font-size: 13px;
+                    &.clear.disabled {
+                        cursor: not-allowed;
+                        color: #ccc;
+                        &:hover {
+                            color: #ccc;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .datetimepicker-days {
+        .day {
+            padding: 8px;
+            border-radius: 0;
+            &.today {
+                background: $primaryColor;
+                color: #fff;
+                &:hover {
+                    background: $primaryColorMore;
+                }
+            }
+        }
+    }
+    .datetimepicker-months {
+        .month {
+            font-size: 13px;
+            border-radius: 0;
+        }
+    }
+    .datetimepicker-years {}
+}
