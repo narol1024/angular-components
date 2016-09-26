@@ -46,7 +46,6 @@ app.controller("ctrl", ['$scope', '$confirm',function($scope,$confirm) {
 </div>
 ```
 **angular代码**
-
 ```javascript
 var app = angular.module("app", ["ui.bootstrap", "ui.confirm"]);
 app.controller("ctrl", ['$scope', '$confirm',function($scope,$confirm) {
@@ -66,3 +65,5 @@ app.controller("ctrl", ['$scope', '$confirm',function($scope,$confirm) {
 }]);
 ```
 
+
+ 
