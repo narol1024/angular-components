@@ -36,7 +36,8 @@ bootstrap-datetimepicker存在一些bug，所有基于此插件fork一个新的�
 </body>
 ```
 
-**angular代码**  
+**angular代码**
+```javascript 
 var app = angular.module("app", ["ui.datetimepicker"]);
 app.controller("ctrl", ['$scope', function($scope) {
     $scope.options = {

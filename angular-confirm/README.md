@@ -64,6 +64,3 @@ app.controller("ctrl", ['$scope', '$confirm',function($scope,$confirm) {
     };
 }]);
 ```
-
-
- 
