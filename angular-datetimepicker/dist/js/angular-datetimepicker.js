@@ -154,7 +154,9 @@ angular.module('ui.datetimepicker', [])
                     /*
                      *时间日期组合可选的边界
                      */
-                    resetDatetimeGroupRange();
+                    if (angular.isFunction(options.relativeGroup)) {
+                        resetDatetimeGroupRange();
+                    }
                 });
             }
         }
