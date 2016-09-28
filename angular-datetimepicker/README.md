@@ -51,9 +51,9 @@ app.controller("ctrl", ['$scope', function($scope) {
 考虑到时间组合起来使用的频率是非常高，这里扩展了一个API`relativeGroup`函数，用于限制时间组合的时间可选范围，函数返回对象的例子如下:  
 ```json
 {
-	groudId:"startTime",//或endTime,标识组件是开始时间还是结束时间
-	relativeDatetime:scope.endTime,//或scope.startTime,关联另外一个scope
-	relativeOptions:$scope.endTimeOptions//或scope.startTimeOptions,关联另外一个配置项目
+	"groudId":"startTime",//或endTime,标识组件是开始时间还是结束时间
+	"relativeDatetime":scope.endTime,//或scope.startTime,关联另外一个scope
+	"relativeOptions":scope.endTimeOptions//或scope.startTimeOptions,关联另外一个配置项目
 }
 ```
 **html代码**  
