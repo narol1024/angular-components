@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>demo</title>
+    <title>angular-datetimepicker</title>
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="../dist/css/angular-datetimepicker.css" />
@@ -22,8 +22,17 @@
 <body ng-app="app" ng-controller="ctrl">
     <form class="form-inline" role="form">
         <div class="form-group">
-            <label class="sr-only" for="exampleInputEmail2">选择的时间</label>
+            <label class="control-label">请选择：</label>
             <input type="text" datetimepicker="options" class="form-control" name="date" ng-model="date" placeholder="请输入时间" required readonly="readonly" />
+        </div>
+    </form>
+    <br />
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label class="control-label">请选择：</label>
+            <input type="text" datetimepicker="startTimeOptions" class="form-control" name="startTime" ng-model="startTime" placeholder="请输入开始时间" required readonly="readonly" />
+            <label class="control-label">-</label>
+            <input type="text" datetimepicker="endTimeOptions" class="form-control" name="endTime" ng-model="endTime" placeholder="请输入结束时间" required readonly="readonly" />
         </div>
     </form>
 </body>
@@ -32,6 +41,30 @@ var app = angular.module("app", ["ui.datetimepicker"]);
 app.controller("ctrl", ['$scope', function($scope) {
     $scope.options = {
         format: "yyyy-mm-dd"
+    };
+    $scope.startTimeOptions = {
+        format: "yyyy-mm-dd hh:ii:ss",
+        limitStartTime:"2016-09-02 12:00:00",
+        limitEndTime:"2016-09-22 10:00:00",
+        relativeGroup: function() {
+            return {
+                groupId:"startTime",
+                relativeDatetime: $scope.endTime,
+                relativeOptions: $scope.endTimeOptions
+            }
+        }
+    };
+    $scope.endTimeOptions = {
+        format: "yyyy-mm-dd hh:ii:ss",
+        limitStartTime:"2016-09-01 01:00:00",
+        limitEndTime:"2016-09-30 06:00:00",
+        relativeGroup: function() {
+            return {
+                groupId:"endTime",
+                relativeDatetime: $scope.startTime,
+                relativeOptions: $scope.startTimeOptions
+            }
+        }
     };
 }]);
 </script>
