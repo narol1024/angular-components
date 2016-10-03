@@ -1,5 +1,9 @@
 ## angular-grid
 ![angular-grid](https://github.com/linjinying/angular-components/blob/master/angular-grid/screenshot.png)  
+
+### demo
+[click here](http://www.w3cin.com/demo/angular-components/angular-grid/)
+
 ### 说明
 一个基于bootstrap、angular的表格组件。  
 ### API
