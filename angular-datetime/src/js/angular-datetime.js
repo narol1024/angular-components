@@ -5,7 +5,7 @@ angular.module("ngDatetime", [])
         *检查是否是时间对象
         */
         DateTime.isDate = function(date) {
-            return Object.prototype.toString.call(date) === "[object Date]";
+            return Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date.getTime());
         };
         /*
         *转换成时间格式
