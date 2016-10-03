@@ -9,7 +9,11 @@
     <script type="text/javascript" src="../bower_components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../dist/js/angular-grid.min.js"></script>
-
+    <style>
+        body{
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body ng-app="app" ng-controller="ctrl">
@@ -27,16 +31,16 @@ app.controller("ctrl", ['$scope', 'TableFactory', function($scope, TableFactory)
         options: {
             name: {
                 ChineseName: "名称",
-                width: "auto"
+                width: "100"
             },
             updateOn: {
                 ChineseName: "更新时间",
-                width: "auto",
+                width: "100",
                 formatDate: "yyyy-mm-dd"
             },
             remark: {
                 ChineseName: "备注",
-                width: "1000"
+                width: "auto"
             },
             btnOperate: {
                 ChineseName: "操作",
