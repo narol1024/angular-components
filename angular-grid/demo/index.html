@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>angular-grid</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../dist/css/angular-grid.css" />
+    <script type="text/javascript" src="../bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../dist/js/angular-grid.min.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+    <angular-table table-options="dataTable"></angular-table>
+</body>
+<script>
+var app = angular.module("app", ["ui.grid"]);
+app.controller("ctrl", ['$scope', 'TableFactory', function($scope, TableFactory) {
+    var tableOptions = {
+        settings: {
+            checkbox: true,
+            viewportNumbers: 10,
+            emptyPlaceholder: "暂无记录"
+        },
+        options: {
+            name: {
+                ChineseName: "名称",
+                width: "auto"
+            },
+            updateOn: {
+                ChineseName: "更新时间",
+                width: "auto",
+                formatDate: "yyyy-mm-dd"
+            },
+            remark: {
+                ChineseName: "备注",
+                width: "auto"
+            },
+            test1: {
+                ChineseName: "test1",
+                width: "100",
+                toFixed: 2
+            },
+            test2: {
+                ChineseName: "test2",
+                width: "100"
+            },
+            test3: {
+                ChineseName: "test3",
+                width: "100"
+            },
+            test4: {
+                ChineseName: "test4",
+                width: "100"
+            },
+            test5: {
+                ChineseName: "test",
+                width: "100"
+            },
+            test6: {
+                ChineseName: "test6",
+                width: "1000"
+            },
+            btnOperate: {
+                ChineseName: "操作",
+                width: "auto",
+                cellTemplate: function() {
+                    var insertBeforeButtonHtml = "<button ng-click='gridScope.insertBefore(tr,$rowScope);'>刷新</button>";
+                    var editButtonHtml = "<button ng-click='gridScope.edit(tr,$rowScope);'>编辑</button>";
+                    var removeButtonHtml = "<button ng-click='gridScope.remove($rowScope);'>删除</button>";
+                    return insertBeforeButtonHtml+editButtonHtml + removeButtonHtml;
+                }
+            }
+        }
+    };
+
+    var dataList = [];
+    for (var i = 0; i < 100; i++) {
+        dataList.push({
+            id: i,
+            name: i,
+            updateOn: new Date().getTime()+86400000*i,
+            remark: "备注信息",
+            test1: i * 100,
+            test2: i * 100,
+            test3: i * 100,
+            test4: i * 100,
+            test5: i * 100,
+            test6: i * 100
+        });
+    }
+    $scope.dataTable = TableFactory.createTable(tableOptions, dataList);
+    $scope.edit = function(item, $rowScope) {
+        item.name = "渠道副本";
+        $rowScope.refresh();
+    };
+    $scope.remove = function($rowScope) {
+        $rowScope.remove();
+    };
+}]);
+</script>
+
+</html>
