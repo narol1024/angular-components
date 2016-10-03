@@ -66,31 +66,6 @@ app.controller("ctrl", ['$scope', 'TableFactory', function($scope, TableFactory)
             },
             remark: {
                 ChineseName: "备注",
-                width: "auto"
-            },
-            test1: {
-                ChineseName: "test1",
-                width: "100",
-                toFixed: 2
-            },
-            test2: {
-                ChineseName: "test2",
-                width: "100"
-            },
-            test3: {
-                ChineseName: "test3",
-                width: "100"
-            },
-            test4: {
-                ChineseName: "test4",
-                width: "100"
-            },
-            test5: {
-                ChineseName: "test",
-                width: "100"
-            },
-            test6: {
-                ChineseName: "test6",
                 width: "1000"
             },
             btnOperate: {
@@ -112,13 +87,7 @@ app.controller("ctrl", ['$scope', 'TableFactory', function($scope, TableFactory)
             id: i,
             name: i,
             updateOn: new Date().getTime()+86400000*i,
-            remark: "备注信息",
-            test1: i * 100,
-            test2: i * 100,
-            test3: i * 100,
-            test4: i * 100,
-            test5: i * 100,
-            test6: i * 100
+            remark: "备注信息"+i
         });
     }
     $scope.dataTable = TableFactory.createTable(tableOptions, dataList);

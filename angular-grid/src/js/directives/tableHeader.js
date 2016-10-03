@@ -8,14 +8,14 @@ angular.module('ui.grid')
                 template: '<thead>' +
                     '   <tr>' +
                     '      <th class="th-checkbox" ng-show="::tableSettings.checkbox"><label><input type="checkbox" ng-model="selectAll" ng-change="checkAll()" /></label></th>' +
-                    '      <th class="th-unit" data-th-key="{{::key}}" ng-if="!item.hidden" ng-repeat="key in objectKeys(tableOptions)" ng-init="item=tableOptions[key]" ng-style="{\'width\':item.width}" ng-class="{\'sort\':key===col}">' +
+                    '      <th class="th-unit" data-th-key="{{::key}}" ng-if="!tableOptions[key].hidden" ng-repeat="key in objectKeys(tableOptions)" ng-style="{\'width\':tableOptions[key].width}" ng-class="{\'sort\':key===col}">' +
                     '          <div class="relative">' +
                     '             <span class="inner" ng-click="sort(key)">' +
                     '               <span class="table-sort" ng-class="{asc:\'down\', desc: \'up\'}[sortType]">' +
                     '                  <span class="icon-up"></span>' +
                     '<span class="icon-down"></span>' +
                     '</span>' +
-                    '               <span class="th-inner" ng-bind="::item.ChineseName"></span>' +
+                    '               <span class="th-inner" ng-bind="::tableOptions[key].ChineseName"></span>' +
                     '          </span>' +
                     '          <span class="th-resize" ng-mousedown="mousedown(key,$event)"></span>' +
                     '        </div>' +
