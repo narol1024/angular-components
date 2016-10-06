@@ -17,6 +17,8 @@ $magic-disabled-color: #e4e4e4 !default;
     position: relative;
     display: inline-block;
     cursor: pointer;
+    margin-bottom: 0;
+    font-weight: normal;
     &:before {
         display: inline-block;
         vertical-align: middle;
@@ -33,7 +35,7 @@ $magic-disabled-color: #e4e4e4 !default;
         display: none;
         content: '';
     }
-    .text{
+    .text {
         display: inline-block;
         vertical-align: middle;
         margin-left: 6px;
@@ -79,7 +81,7 @@ $magic-disabled-color: #e4e4e4 !default;
         width: 6px;
         height: 10px;
         transform: rotate(45deg);
-        border:2px solid #fff;
+        border: 2px solid #fff;
         border-top: 0;
         border-left: 0;
     }

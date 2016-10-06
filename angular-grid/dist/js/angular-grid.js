@@ -1,4 +1,244 @@
 angular.module('ui.grid', []);
+angular.module('ui.grid').factory('TableFactory', [function() {
+    var Table = {};
+    Table.defaultSettings = {
+        checkbox: false,
+        viewportNumbers: 10,
+        _emptyBodyHeight:80
+    };
+    /*构建TableList*/
+    Table.createTable = function(tableOptions, tableList) {
+        var tableSettings = angular.extend({}, Table.defaultSettings, tableOptions.settings);
+        var tableOptions = tableOptions.options;
+        /*在tableOptions没有定义的字段，默认用hidden隐藏*/
+        var tableOptionsKeys = {};
+        for (var key in tableList[0]) {
+            if (tableList[0].hasOwnProperty(key) && !tableOptions[key]) {
+                tableOptionsKeys[key] = {
+                    hidden: true
+                };
+            }
+        }
+        tableOptions = angular.extend({}, tableOptions, tableOptionsKeys);
+
+        var constructTableOptions = function() {
+            var optionsObject = {};
+            for (var item in tableOptions) {
+                if (angular.isFunction(tableOptions[item].hidden)) {
+                    tableOptions[item].hidden = tableOptions[item].hidden() || false;
+                }
+                optionsObject[item] = angular.extend({}, tableOptions[item]);
+            }
+            return optionsObject;
+        };
+        var constructTableRow = function(proxyLists) {
+            var rowObject = {};
+            for (var mapping in tableOptions) {
+                rowObject[mapping] = proxyLists[mapping];
+            }
+            return rowObject;
+        }
+        var constructTableList = function() {
+            var listObject = [];
+            for (var i = 0; i < tableList.length; i++) {
+                var row = constructTableRow(tableList[i]);
+                renderCellTemplate(row);
+                listObject.push(row);
+            }
+            return listObject;
+        };
+        /*渲染单元格html代码*/
+        var renderCellTemplate = function(row) {
+            for (var mapping in tableOptions) {
+                if (tableOptions[mapping].cellTemplate) {
+                    row[mapping] = tableOptions[mapping].cellTemplate();
+                }
+            }
+        };
+        return {
+            refresh:function(){
+                this._watcherId = new Date().getTime();
+            },
+            _watcherId: new Date().getTime(),
+            tableSettings: tableSettings,
+            tableOptions: constructTableOptions(),
+            tableList: constructTableList()
+        };
+    };
+    return Table;
+}]);
+
+angular.module('ui.grid').factory('TableHelper', [function() {
+    var Helper = {};
+    /*
+     *检查是否是时间对象
+     */
+    Helper.isDate = function(date) {
+        return Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date.getTime());
+    };
+    /*
+     *转换成时间格式
+     *@dateStr 时间戳或标准时间参数
+     */
+    Helper.newDate = function(dateStr) {
+        try {
+            if (dateStr && !isNaN(Number(dateStr))) {
+                return new Date(Number(dateStr));
+            }
+
+        } catch (err) {
+            throw new Error(err);
+        }
+        try {
+            //处理 yyyy-mm-dd hh:ii:ss这种非标准格式的日期
+            var a = dateStr.split(" ");
+            var d = a[0].split("-");
+            var result;
+            if (a[1]) {
+                var t = a[1].split(":");
+                result = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
+            } else {
+                result = new Date(d[0], (d[1] - 1), d[2]);
+            }
+            return result;
+        } catch (err) {
+            throw new Error("translate error");
+        }
+    };
+    /*
+     *格式化日期
+     *@date 时间对象
+     *@format yyyy-mm-dd hh:ii:ss
+     */
+    Helper.format = function(date, format) {
+        if (!this.isDate(date)) {
+            return "-";
+        }
+        var date = date;
+        var o = {
+            "m+": date.getMonth() + 1, //月份
+            "d+": date.getDate(), //日
+            "h+": date.getHours(), //小时
+            "i+": date.getMinutes(), //分
+            "s+": date.getSeconds(), //秒
+            "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+            "S": date.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(format)) {
+            format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+        return format;
+    };
+    Helper.sort = function(list, key, t, fix) {
+        if (!list.length) {
+            return list;
+        }
+        t = t === 'desc' ? 'desc' : 'asc'; // ascending or descending sorting, 默认 升序
+        fix = Object.prototype.toString.apply(fix) === '[object Function]' ? fix : function(key) {
+            return key;
+        };
+        switch (Object.prototype.toString.apply(fix.call({}, list[0][key]))) {
+            case '[object Number]':
+                return list.sort(function(a, b) {
+                    return t === 'asc' ? (fix.call({}, a[key]) - fix.call({}, b[key])) : (fix.call({}, b[key]) - fix.call({}, a[key]));
+                });
+            case '[object String]':
+                return list.sort(function(a, b) {
+                    return t === 'asc' ? fix.call({}, a[key]).localeCompare(fix.call({}, b[key])) : fix.call({}, b[key]).localeCompare(fix.call({}, a[key]));
+                });
+            default:
+                return list;
+        }
+    }
+    Helper.throttle = function(method, delay) {
+        var timer = null;
+        return function() {
+            var context = this,
+                args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                method.apply(context, args);
+            }, delay);
+        }
+    };
+    Helper.getScrollbarWidth = function() {
+        var outer = document.createElement("div");
+        outer.style.visibility = "hidden";
+        outer.style.width = "100px";
+        outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+        document.body.appendChild(outer);
+
+        var widthNoScroll = outer.offsetWidth;
+        // force scrollbars
+        outer.style.overflow = "scroll";
+
+        // add innerdiv
+        var inner = document.createElement("div");
+        inner.style.width = "100%";
+        outer.appendChild(inner);
+
+        var widthWithScroll = inner.offsetWidth;
+
+        // remove divs
+        outer.parentNode.removeChild(outer);
+
+        return widthNoScroll - widthWithScroll;
+    };
+    return Helper;
+}]);
+
+angular.module('ui.grid').filter('tableCellTrans', ["TableHelper", function(TableHelper) {
+    return function(text, param) {
+        var isNull = text === null || text === "";
+        if (param.transValue) {
+            var transValue;
+            if (angular.isFunction(param.transValue)) {
+                var tempObject = param.transValue();
+                var transObject = {};
+                var map = tempObject.list;
+                var key = tempObject.key;
+                var value = tempObject.value;
+                for (var i = 0; i < map.length; i++) {
+                    transObject[map[i][key]] = map[i][value];
+                }
+                transValue = transObject[text];
+            } else {
+                transValue = param.transValue[text];
+            }
+            text = transValue || "-";
+        }
+        if (param.formatDate) {
+            try {
+                text = TableHelper.format(TableHelper.newDate(text), param.formatDate);
+            } catch (err) {
+                text = "-";
+            }
+        }
+        if (param.toFixed) {
+            try {
+                if (angular.isNumber(Number(text)) && !angular.equals(NaN, Number(text))) {
+                    text = Number(text).toFixed(param.toFixed);
+                } else {
+                    text = "-";
+                }
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        if (param.unitText) {
+            text = text + param.unitText.toString();
+        }
+        return isNull ? "-" : text;
+    };
+}]);
+
 angular.module('ui.grid').directive('angularTableBody', [function() {
     return {
         restrict: 'EA',
@@ -258,7 +498,7 @@ angular.module('ui.grid')
                 template: '<thead>' +
                     '   <tr>' +
                     '      <th class="th-checkbox" ng-show="::tableSettings.checkbox"><label><input type="checkbox" ng-model="selectAll" ng-change="checkAll()" /></label></th>' +
-                    '      <th class="th-unit" data-th-key="{{::key}}" ng-if="!tableOptions[key].hidden" ng-repeat="key in objectKeys(tableOptions)" ng-style="{\'width\':tableOptions[key].width}" ng-class="{\'sort\':key===col}">' +
+                    '      <th class="th-unit" data-th-key="{{::key}}" ng-if="!tableOptions[key].hidden" ng-repeat="key in objectKeys(tableOptions) track by $index" ng-style="{\'width\':tableOptions[key].width}" ng-class="{\'sort\':key===col}">' +
                     '          <div class="relative">' +
                     '             <span class="inner" ng-click="sort(key)">' +
                     '               <span class="table-sort" ng-class="{asc:\'down\', desc: \'up\'}[sortType]">' +
@@ -377,7 +617,7 @@ angular.module('ui.grid').directive('angularTableRow', ['$compile', function($co
                     expandedContent.scope().$destroy();
                 }
                 var template = '<td class="td-checkbox" ng-show="::tableSettings.checkbox"><label><input type="checkbox" ng-model="tr.checked" ng-change="selectRow({tr:tr})" /></label></td>' +
-                    '<td data-td-key="{{::key}}" class="td-unit" ng-repeat="key in objectKeys(tr)" ng-init="td=tr[key]" ng-if="::tableOptions[key] && !tableOptions[key].hidden" ng-style="{\'width\':tableOptions[key].width}">' +
+                    '<td data-td-key="{{::key}}" class="td-unit" ng-repeat="key in objectKeys(tr) track by $index" ng-init="td=tr[key]" ng-if="::tableOptions[key] && !tableOptions[key].hidden" ng-style="{\'width\':tableOptions[key].width}">' +
                     '   <div ng-if="::tableOptions[key].cellTemplate" table-cell-compile="::td" class="td-inner td-tpl"></div>' +
                     '   <div ng-if="::!tableOptions[key].cellTemplate" ng-bind="::td|tableCellTrans:tableOptions[key]" title="{{::td|tableCellTrans:tableOptions[key]}}" class="td-inner td-text"></div>' +
                     '</td>';
@@ -443,243 +683,3 @@ angular.module('ui.grid').directive('angularTable', function() {
         }
     };
 });
-
-angular.module('ui.grid').factory('TableFactory', [function() {
-    var Table = {};
-    Table.defaultSettings = {
-        checkbox: false,
-        viewportNumbers: 10,
-        _emptyBodyHeight:80
-    };
-    /*构建TableList*/
-    Table.createTable = function(tableOptions, tableList) {
-        var tableSettings = angular.extend({}, Table.defaultSettings, tableOptions.settings);
-        var tableOptions = tableOptions.options;
-        /*在tableOptions没有定义的字段，默认用hidden隐藏*/
-        var tableOptionsKeys = {};
-        for (var key in tableList[0]) {
-            if (tableList[0].hasOwnProperty(key) && !tableOptions[key]) {
-                tableOptionsKeys[key] = {
-                    hidden: true
-                };
-            }
-        }
-        tableOptions = angular.extend({}, tableOptions, tableOptionsKeys);
-
-        var constructTableOptions = function() {
-            var optionsObject = {};
-            for (var item in tableOptions) {
-                if (angular.isFunction(tableOptions[item].hidden)) {
-                    tableOptions[item].hidden = tableOptions[item].hidden() || false;
-                }
-                optionsObject[item] = angular.extend({}, tableOptions[item]);
-            }
-            return optionsObject;
-        };
-        var constructTableRow = function(proxyLists) {
-            var rowObject = {};
-            for (var mapping in tableOptions) {
-                rowObject[mapping] = proxyLists[mapping];
-            }
-            return rowObject;
-        }
-        var constructTableList = function() {
-            var listObject = [];
-            for (var i = 0; i < tableList.length; i++) {
-                var row = constructTableRow(tableList[i]);
-                renderCellTemplate(row);
-                listObject.push(row);
-            }
-            return listObject;
-        };
-        /*渲染单元格html代码*/
-        var renderCellTemplate = function(row) {
-            for (var mapping in tableOptions) {
-                if (tableOptions[mapping].cellTemplate) {
-                    row[mapping] = tableOptions[mapping].cellTemplate();
-                }
-            }
-        };
-        return {
-            refresh:function(){
-                this._watcherId = new Date().getTime();
-            },
-            _watcherId: new Date().getTime(),
-            tableSettings: tableSettings,
-            tableOptions: constructTableOptions(),
-            tableList: constructTableList()
-        };
-    };
-    return Table;
-}]);
-
-angular.module('ui.grid').factory('TableHelper', [function() {
-    var Helper = {};
-    /*
-     *检查是否是时间对象
-     */
-    Helper.isDate = function(date) {
-        return Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date.getTime());
-    };
-    /*
-     *转换成时间格式
-     *@dateStr 时间戳或标准时间参数
-     */
-    Helper.newDate = function(dateStr) {
-        try {
-            if (dateStr && !isNaN(Number(dateStr))) {
-                return new Date(Number(dateStr));
-            }
-
-        } catch (err) {
-            throw new Error(err);
-        }
-        try {
-            //处理 yyyy-mm-dd hh:ii:ss这种非标准格式的日期
-            var a = dateStr.split(" ");
-            var d = a[0].split("-");
-            var result;
-            if (a[1]) {
-                var t = a[1].split(":");
-                result = new Date(d[0], (d[1] - 1), d[2], t[0], t[1], t[2]);
-            } else {
-                result = new Date(d[0], (d[1] - 1), d[2]);
-            }
-            return result;
-        } catch (err) {
-            throw new Error("translate error");
-        }
-    };
-    /*
-     *格式化日期
-     *@date 时间对象
-     *@format yyyy-mm-dd hh:ii:ss
-     */
-    Helper.format = function(date, format) {
-        if (!this.isDate(date)) {
-            return "-";
-        }
-        var date = date;
-        var o = {
-            "m+": date.getMonth() + 1, //月份
-            "d+": date.getDate(), //日
-            "h+": date.getHours(), //小时
-            "i+": date.getMinutes(), //分
-            "s+": date.getSeconds(), //秒
-            "q+": Math.floor((date.getMonth() + 3) / 3), //季度
-            "S": date.getMilliseconds() //毫秒
-        };
-        if (/(y+)/.test(format)) {
-            format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-        }
-        for (var k in o) {
-            if (new RegExp("(" + k + ")").test(format)) {
-                format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            }
-        }
-        return format;
-    };
-    Helper.sort = function(list, key, t, fix) {
-        if (!list.length) {
-            return list;
-        }
-        t = t === 'desc' ? 'desc' : 'asc'; // ascending or descending sorting, 默认 升序
-        fix = Object.prototype.toString.apply(fix) === '[object Function]' ? fix : function(key) {
-            return key;
-        };
-        switch (Object.prototype.toString.apply(fix.call({}, list[0][key]))) {
-            case '[object Number]':
-                return list.sort(function(a, b) {
-                    return t === 'asc' ? (fix.call({}, a[key]) - fix.call({}, b[key])) : (fix.call({}, b[key]) - fix.call({}, a[key]));
-                });
-            case '[object String]':
-                return list.sort(function(a, b) {
-                    return t === 'asc' ? fix.call({}, a[key]).localeCompare(fix.call({}, b[key])) : fix.call({}, b[key]).localeCompare(fix.call({}, a[key]));
-                });
-            default:
-                return list;
-        }
-    }
-    Helper.throttle = function(method, delay) {
-        var timer = null;
-        return function() {
-            var context = this,
-                args = arguments;
-            clearTimeout(timer);
-            timer = setTimeout(function() {
-                method.apply(context, args);
-            }, delay);
-        }
-    };
-    Helper.getScrollbarWidth = function() {
-        var outer = document.createElement("div");
-        outer.style.visibility = "hidden";
-        outer.style.width = "100px";
-        outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
-
-        document.body.appendChild(outer);
-
-        var widthNoScroll = outer.offsetWidth;
-        // force scrollbars
-        outer.style.overflow = "scroll";
-
-        // add innerdiv
-        var inner = document.createElement("div");
-        inner.style.width = "100%";
-        outer.appendChild(inner);
-
-        var widthWithScroll = inner.offsetWidth;
-
-        // remove divs
-        outer.parentNode.removeChild(outer);
-
-        return widthNoScroll - widthWithScroll;
-    };
-    return Helper;
-}]);
-
-angular.module('ui.grid').filter('tableCellTrans', ["TableHelper", function(TableHelper) {
-    return function(text, param) {
-        var isNull = text === null || text === "";
-        if (param.transValue) {
-            var transValue;
-            if (angular.isFunction(param.transValue)) {
-                var tempObject = param.transValue();
-                var transObject = {};
-                var map = tempObject.list;
-                var key = tempObject.key;
-                var value = tempObject.value;
-                for (var i = 0; i < map.length; i++) {
-                    transObject[map[i][key]] = map[i][value];
-                }
-                transValue = transObject[text];
-            } else {
-                transValue = param.transValue[text];
-            }
-            text = transValue || "-";
-        }
-        if (param.formatDate) {
-            try {
-                text = TableHelper.format(TableHelper.newDate(text), param.formatDate);
-            } catch (err) {
-                text = "-";
-            }
-        }
-        if (param.toFixed) {
-            try {
-                if (angular.isNumber(Number(text)) && !angular.equals(NaN, Number(text))) {
-                    text = Number(text).toFixed(param.toFixed);
-                } else {
-                    text = "-";
-                }
-
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        if (param.unitText) {
-            text = text + param.unitText.toString();
-        }
-        return isNull ? "-" : text;
-    };
-}]);

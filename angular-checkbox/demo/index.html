@@ -10,18 +10,18 @@
 </head>
 
 <body ng-app="app" ng-controller="ctrl">
-    <input angular-checkbox="options" class="angular-checkbox" type="checkbox" name="checkbox" ng-model="checked" ng-true-value="'YES'" ng-false-value="'NO'"/>
+    <input angular-checkbox="options" class="angular-checkbox" type="checkbox" name="checkbox" ng-model="checked" ng-true-value="'YES'" ng-false-value="'NO'" value="value"/>
     <h3>{{checked}}</h3>
 </body>
 <script>
 var app = angular.module("app", ["ui.checkbox"]);
-app.controller("ctrl", ['$scope', function($scope) {
+app.controller("ctrl", ['$scope', '$timeout',function($scope,$timeout) {
     $scope.checked = "YES";
+    $scope.value = "2225";
     $scope.options = {
-        text:"click me!",
         onCheck:function(){
         }
-    }
+    };
 }]);
 </script>
 

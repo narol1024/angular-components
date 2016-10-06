@@ -6,160 +6,250 @@ angular.module('ui.itempicker', ['ui.checkbox'])
                 options: '=options',
             },
             template: '<div class="angular-itempicker">' +
-                '   <div class="list-wrap source-list-wrap">' +
-                '       <div class="search-box" ng-if="::settings.showSearch">' +
-                '           <div class="search-item">' +
-                '               <input type="text" ng-model="searchSourceName" class="form-control search-box-input" placeholder="{{::settings.searchPlaceholder}}">' +
-                '           </div>' +
-                '       </div>' +
-                '       <div class="select-all">' +
-                '           <angular-checkbox on-check="toggleAllSourceList()" ng-disabled="sourceListFiltered.length === 0" ng-model="isSelectAllSourceList" default-value="false" target-value="true" check-text="{{sourceListFiltered.length}}条"></angular-checkbox>' +
-                '       </div>' +
-                '       <div class="list source-list">' +
-                '           <div class="item" ng-repeat="item in options.sourceList | filter:getSourceFilter() as sourceListFiltered">' +
-                '               <angular-checkbox on-check="checkItemSourceList()" ng-model="item.checked" default-value="false" target-value="true" check-text="{{::item[settings.value]}}" ></angular-checkbox>' +
-                '           </div>' +
-                '       </div>' +
+                '   <item-picker-source-list></item-picker-source-list>' +
+                '   <item-picker-toolbar></item-picker-toolbar>' +
+                '   <item-picker-target-list></item-picker-target-list>' +
+                '</div>',
+            controller: ['$scope', function($scope) {
+                $scope.settings = angular.extend({ key: "id", value: "name", showSearch: true, searchPlaceholder: "请输入搜索内容" }, $scope.options.settings);
+                $scope.sourceListFiltered = [];
+                $scope.targetListFiltered = [];
+                $scope.search = {};
+                $scope.options.sourceList = $scope.options.sourceList || [];
+                $scope.options.targetList = $scope.options.targetList || [];
+                /*
+                 *检查是否检查选中所有
+                 */
+                $scope.isCheckAll = function(list) {
+                    var result = true;
+                    for (var i = 0; i < list.length; i++) {
+                        if (!list[i].checked) {
+                            result = false;
+                        }
+                    }
+                    if(!list.length){
+                        result = false;
+                    }
+                    return result;
+                };
+                /*
+                *获取结果
+                */
+                $scope.options.getResult = function(){
+                    var resultArray = [];
+                    var targetList = $scope.options.targetList;
+                    for(var i = 0 ; i < targetList.length ; i++){
+                        var tempObject = {};
+                        var key = $scope.settings.key;
+                        var value = $scope.settings.value;
+                        tempObject[key] = targetList[i][key];
+                        tempObject[value] = targetList[i][value];
+                        resultArray.push(tempObject);
+                    }
+                    return resultArray;
+                };
+            }],
+            link: function($scope, element, attr) {
+
+            }
+        };
+    }]);
+
+angular.module('ui.itempicker')
+    .directive('itemPickerSourceList', [function() {
+        return {
+            replace:true,
+            restrict: 'E',
+            template: '<div class="list-wrap">' +
+                '   <div class="search-wrap" ng-if="::settings.showSearch">' +
+                '      <input type="text" ng-model="search.leftName" placeholder="{{::settings.searchPlaceholder}}" />' +
                 '   </div>' +
-                '   <div class="tool-btn-wrap">' +
-                '       <button type="button" class="btn" ng-click="pushToRight()" title="左移"><span class="icon icon-chevron-right"></span></button>' +
-                '       <button type="button" class="btn" ng-click="pushToLeft()" title="右移"><span class="icon icon-chevron-left"></span></button>' +
+                '   <div class="select-all">' +
+                '      <input angular-checkbox="checkboxLeftAllOptions" ng-disabled="sourceListFiltered.length === 0" class="angular-checkbox" type="checkbox" ng-model="selectAllLeft" ng-true-value="true" ng-false-value="false" value="sourceListFiltered.length+\'条\'" />' +
                 '   </div>' +
-                '   <div class="list-wrap target-list-wrap">' +
-                '       <div class="search-box" ng-if="::settings.showSearch">' +
-                '           <div class="search-item">' +
-                '               <input type="text" ng-model="searchTargetName" class="form-control search-box-input" placeholder="{{::settings.searchPlaceholder}}">' +
-                '           </div>' +
-                '       </div>' +
-                '       <div class="select-all">' +
-                '           <angular-checkbox  on-check="toggleAllTargetList()" ng-disabled="targetListFiltered.length === 0" ng-model="isSelectAllTargetList" default-value="false" target-value="true" check-text="{{targetListFiltered.length}}条"></angular-checkbox>' +
-                '       </div>' +
-                '       <div class="list target-list">' +
-                '           <div class="item" ng-repeat="item in options.targetList | filter:getTargetFilter() as targetListFiltered">' +
-                '               <angular-checkbox on-check="checkItemTargetList()" ng-model="item.checked" default-value="false" target-value="true" check-text="{{::item[settings.value]}}"></angular-checkbox>' +
-                '           </div>' +
+                '   <div class="list">' +
+                '      <div class="item" ng-repeat="item in options.sourceList | filter:getSourceFilter() as sourceListFiltered">' +
+                '         <input angular-checkbox="checkboxLeftOptions" class="angular-checkbox" type="checkbox" ng-model="item.checked" ng-true-value="true" ng-false-value="false" value="item[settings.value]" />' +
+                '      </div>' +
+                '   </div>' +
+                '</div>',
+            controller: ['$scope', function($scope) {
+                $scope.checkboxLeftAllOptions = {
+                    onCheck: function() {
+                        $scope.checkAllLeftList();
+                    }
+                };
+                $scope.checkboxLeftOptions = {
+                    onCheck: function() {
+                        $scope.checkLeftList();
+                    }
+                };
+                $scope.getSourceFilter = function() {
+                    var filterObject = {};
+                    filterObject[$scope.settings.value] = $scope.search.leftName;
+                    $scope.checkLeftList();
+                    return filterObject;
+                };
+                /*选中左边的单项*/
+                $scope.checkLeftList = function() {
+                    $scope.selectAllLeft = $scope.isCheckAll($scope.sourceListFiltered);
+                };
+                /*
+                 *全部选中左边
+                 */
+                $scope.checkAllLeftList = function() {
+                    if (!$scope.selectAllLeft) {
+                        $scope.selectAllLeft = true;
+                        angular.forEach($scope.sourceListFiltered, function(item) {
+                            item.checked = true;
+                        });
+                    } else {
+                        $scope.uncheckAllLeftList();
+                    }
+                };
+                /*
+                 *取消全部选中左边
+                 */
+                $scope.uncheckAllLeftList = function() {
+                    $scope.selectAllLeft = false;
+                    angular.forEach($scope.options.sourceList, function(item) {
+                        item.checked = false;
+                    });
+                };
+            }],
+            link: function(scope, element, attr) {
+
+            }
+        };
+    }]);
+
+angular.module('ui.itempicker')
+    .directive('itemPickerTargetList', [function() {
+        return {
+            replace:true,
+            restrict: 'E',
+            template: '<div class="list-wrap">' +
+                '   <div class="search-wrap" ng-if="::settings.showSearch">' +
+                '      <input type="text" ng-model="search.rightName" placeholder="{{::settings.searchPlaceholder}}" />' +
+                '   </div>' +
+                '   <div class="select-all">' +
+                '      <input angular-checkbox="checkboxRightAllOptions" ng-disabled="targetListFiltered.length === 0" class="angular-checkbox" type="checkbox" ng-model="selectAllRight" ng-true-value="true" ng-false-value="false" value="targetListFiltered.length+\'条\'" />' +
+                '   </div>' +
+                '   <div class="list">' +
+                '       <div class="item" ng-repeat="item in options.targetList | filter:getTargetFilter() as targetListFiltered">' +
+                '         <input angular-checkbox="checkboxRightOptions"  class="angular-checkbox" type="checkbox" ng-model="item.checked" ng-true-value="true" ng-false-value="false" value="item[settings.value]" />' +
                 '       </div>' +
                 '   </div>' +
                 '</div>',
-            link: function(scope, element, attr) {
-                var settings = scope.settings = angular.extend({ key: "id", value: "name", showSearch: true, searchPlaceholder: "请输入搜索内容" }, scope.options.settings);
-                var key = settings.key;
-                var defaultSource = {}; //默认数据源，供恢复操作使用
-                scope.sourceListFiltered = [];
-                scope.targetListFiltered = [];
-                scope.isSelectAllSourceList = false;
-                scope.isSelectAllTargetList = false;
-                scope.getSourceFilter = function() {
+            controller: ['$scope', function($scope) {
+                $scope.checkboxRightAllOptions = {
+                    onCheck: function() {
+                        $scope.checkAllRightList();
+                    }
+                };
+                $scope.checkboxRightOptions = {
+                    onCheck: function() {
+                        $scope.checkRightList();
+                    }
+                };
+                /*
+                *搜索右边数据
+                */
+                $scope.getTargetFilter = function() {
                     var filterObject = {};
-                    filterObject[settings.value] = scope.searchSourceName;
+                    filterObject[$scope.settings.value] = $scope.search.rightName;
+                    $scope.checkRightList();
                     return filterObject;
-                };
-                scope.getTargetFilter = function() {
-                    var filterObject = {};
-                    filterObject[settings.value] = scope.searchTargetName;
-                    return filterObject;
-                };
-                /*取消左框全部的选择*/
-                var cancelAllSourceList = function() {
-                    scope.isSelectAllSourceList = false;
-                    for (var i = 0; i < scope.options.sourceList.length; i++) {
-                        scope.options.sourceList[i].checked = false;
-                    }
-                };
-                /*取消右框全部的选择*/
-                var cancelAllTargetList = function() {
-                    scope.isSelectAllTargetList = false;
-                    for (var i = 0; i < scope.options.targetList.length; i++) {
-                        scope.options.targetList[i].checked = false;
-                    }
-                };
-                /*取消左框全部的选择*/
-                scope.toggleAllSourceList = function() {
-                    if (scope.isSelectAllSourceList) {
-                        angular.forEach(scope.sourceListFiltered, function(item) {
-                            item.checked = true;
-                        });
-                    } else {
-                        cancelAllSourceList();
-                    }
-                };
-                /*取消右框全部的选择*/
-                scope.toggleAllTargetList = function() {
-                    if (scope.isSelectAllTargetList) {
-                        angular.forEach(scope.targetListFiltered, function(item) {
-                            item.checked = true;
-                        });
-                    } else {
-                        cancelAllTargetList();
-                    }
-                };
-                /*选中左边的单项*/
-                scope.checkItemSourceList = function() {
-                    for (var i = 0; i < scope.sourceListFiltered.length; i++) {
-                        if (!scope.sourceListFiltered[i].checked) {
-                            scope.isSelectAllSourceList = false;
-                            return;
-                        }
-                    }
-                    scope.isSelectAllSourceList = true;
                 };
                 /*选中右边的单项*/
-                scope.checkItemTargetList = function() {
-                    for (var i = 0; i < scope.targetListFiltered.length; i++) {
-                        if (!scope.targetListFiltered[i].checked) {
-                            scope.isSelectAllTargetList = false;
-                            return;
+                $scope.checkRightList = function() {
+                    $scope.selectAllRight = $scope.isCheckAll($scope.targetListFiltered);
+                };
+                /*
+                 *全部选中左边
+                 */
+                $scope.checkAllRightList = function() {
+                    if (!$scope.selectAllRight) {
+                        $scope.selectAllRight = true;
+                        angular.forEach($scope.targetListFiltered, function(item) {
+                            item.checked = true;
+                        });
+                    } else {
+                        $scope.uncheckAllRightList();
+                    }
+                };
+                /*
+                 *取消全部选中左边
+                 */
+                $scope.uncheckAllRightList = function() {
+                    $scope.selectAllRight = false;
+                    angular.forEach($scope.options.targetList, function(item) {
+                        item.checked = false;
+                    });
+                };
+            }],
+            link: function(scope, element, attr) {
+
+            }
+        };
+    }]);
+
+angular.module('ui.itempicker')
+    .directive('itemPickerToolbar', [function() {
+        return {
+            replace: true,
+            restrict: 'E',
+            template: '<div class="tool-btn-wrap">' +
+                '    <button type="button" class="btn" ng-click="pushLeft()" title="右移"><span class="icon-arrow-left"></span></button>' +
+                '    <button type="button" class="btn" ng-click="pushRight()" title="左移"><span class="icon-arrow-right"></span></button>' +
+                '</div>',
+            controller: ['$scope', function($scope) {
+                var key = $scope.settings.key;
+                var value = $scope.settings.value;
+                var pushItem = function(options) {
+                    var currentList = options.currentList;
+                    var listFiltered = options.listFiltered;
+                    var targetList = options.targetList;
+                    var noCheck = true;
+                    for (var i = listFiltered.length; i--;) {
+                        if (listFiltered[i].checked) {
+                            noCheck = false;
+                            targetList.unshift(angular.copy(listFiltered[i]));
+                            for (var j = currentList.length; j--;) {
+                                if (currentList[j][key] === listFiltered[i][key] &&
+                                    currentList[j][value] === listFiltered[i][value]) {
+                                    currentList.splice(j, 1);
+                                    break;
+                                }
+                            }
+                            listFiltered.splice(i, 1);
                         }
                     }
-                    scope.isSelectAllTargetList = true;
+                    if (!noCheck) {
+                        $scope.uncheckAllLeftList();
+                        $scope.uncheckAllRightList();
+                    }
                 };
                 /*右移*/
-                scope.pushToRight = function() {
-                    var checkedArray = [];
-                    angular.forEach(scope.sourceListFiltered, function(item) {
-                        if (item.checked) {
-                            checkedArray.push(item);
-                        }
+                $scope.pushRight = function() {
+                    pushItem({
+                        listFiltered:$scope.sourceListFiltered,
+                        currentList:$scope.options.sourceList,
+                        targetList:$scope.options.targetList
                     });
-                    if (checkedArray.length > 0) {
-                        scope.searchTargetName = "";
-                        scope.options.targetList = scope.options.targetList.concat(angular.copy(checkedArray));
-                        var tempSourceList = scope.options.sourceList;
-                        for (var i = 0; i < checkedArray.length; i++) {
-                            var currrentId = checkedArray[i][key];
-                            for (var j = 0; j < tempSourceList.length; j++) {
-                                if (currrentId === tempSourceList[j][key]) {
-                                    tempSourceList.splice(j, 1);
-                                }
-                            }
-                        }
-                        cancelAllSourceList();
-                        cancelAllTargetList();
-                    }
+
                 };
                 /*左移*/
-                scope.pushToLeft = function() {
-                    var checkedArray = [];
-                    angular.forEach(scope.targetListFiltered, function(item) {
-                        if (item.checked) {
-                            checkedArray.push(item);
-                        }
+                $scope.pushLeft = function() {
+                    pushItem({
+                        listFiltered:$scope.targetListFiltered,
+                        currentList:$scope.options.targetList,
+                        targetList:$scope.options.sourceList
                     });
-                    if (checkedArray.length > 0) {
-                        scope.options.sourceList = scope.options.sourceList.concat(angular.copy(checkedArray));
-                        var tempTargetList = scope.options.targetList;
-                        for (var i = 0; i < checkedArray.length; i++) {
-                            var currrentId = checkedArray[i][key];
-                            for (var j = 0; j < tempTargetList.length; j++) {
-                                if (currrentId === tempTargetList[j][key]) {
-                                    tempTargetList.splice(j, 1);
-                                }
-                            }
-                        }
-                        cancelAllSourceList();
-                        cancelAllTargetList();
-                    }
                 };
+            }],
+            link: function(scope, element, attr) {
+
             }
         };
     }]);

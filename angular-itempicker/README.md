@@ -1,19 +1,24 @@
 ## angular-itempicker
-### 版本
-version 1.0.0
+![angular-itempicker](https://github.com/linjinying/angular-components/blob/master/angular-itempicker/screenshot.png)  
+
+### demo
+[click here](http://www.w3cin.com/demo/angular-components/angular-itempicker/)
+
 ### 说明
-一个基于bootstrap、angular的双栏穿梭框，目前支持的API有：  
+一个基于bootstrap、angular的双栏穿梭框： 
+### API
+#### Settings
 - **key** 数据值索引，默认为`id`  
-- **value** 数据值的key，默认为`name`  
+- **value** 数据值，默认为`name`  
 - **showSearch** 是否显示搜索栏，默认为true  
 - **searchPlaceholder** 搜索的文案，默认为`请输入搜索内容`  
+### List
 - **sourceList** 左栏数据源，格式为json数组，默认为空  
 - **targetList** 右栏数据源，格式为json数组，默认为空  
 
 ### 依赖
 - angular
 - angular-checkbox  
-- bootstrap
 
 ### 使用方式  
 
@@ -34,10 +39,38 @@ app.controller("ctrl", ['$scope', function($scope) {
             value: "name",
             searchPlaceholder: "请输入搜索内容"
         },
-        sourceList: [{"id":48,"name":"11(shan123)"},{"id":49,"name":"12(shan123)"},{"id":50,"name":"13(shan123)"},{"id":51,"name":"14(shan123)"},{"id":52,"name":"15(shan123)"},{"id":53,"name":"16(shan123)"},{"id":54,"name":"17(shan123)"},{"id":55,"name":"18(shan123)"},{"id":56,"name":"19(shan123)"},{"id":57,"name":"20(shan123)"}],
+        sourceList: [{
+            "id": 1,
+            "name": "Karry"
+        }, {
+            "id": 1,
+            "name": "Karry"
+        }, {
+            "id": 3,
+            "name": "Narol"
+        }, {
+            "id": 4,
+            "name": "Leb"
+        }, {
+            "id": 5,
+            "name": "Cok"
+        }, {
+            "id": 6,
+            "name": "Yol"
+        }, {
+            "id": 7,
+            "name": "Keb"
+        }, {
+            "id": 8,
+            "name": "Tex"
+        }, {
+            "id": 9,
+            "name": "Hok"
+        }, {
+            "id": 10,
+            "name": "Zero"
+        }],
         targetList: []
     };
-}])
+}]);
 ```
-### future
-根据业务需求，自己扩展想要的功能。

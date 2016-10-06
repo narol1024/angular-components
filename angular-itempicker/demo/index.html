@@ -4,18 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>demo</title>
-    <link rel="stylesheet" href="../../libs/font-awesome-3.0.2/css/font-awesome.css" />
-    <link rel="stylesheet" href="../../libs/bootstrap-3.3.6/css/bootstrap.css" />
-    <link rel="stylesheet" href="../../angular-checkbox/dist/css/angular-checkbox.css" />
-    <link rel="stylesheet" href="../../angular-confirm/dist/css/angular-confirm.css" />
-    <link rel="stylesheet" href="../css/angular-itempicker.css" />
+    <link rel="stylesheet" href="../libs/angular-checkbox/dist/css/angular-checkbox.min.css" />
+    <link rel="stylesheet" href="../dist/css/angular-itempicker.css" />
     <script src="../../libs/jquery-1.11.1/jquery.js"></script>
     <script src="../../libs/angular-1.4.8/angular.js"></script>
-    <script src="../../angular-checkbox/dist/js/angular-checkbox.js"></script>
+    <script src="../libs/angular-checkbox/dist/js/angular-checkbox.js"></script>
     <script src="../dist/js/angular-itempicker.js"></script>
+    <style>
+        body{
+            margin: 10px;
+        }
+    </style>
 </head>
 
-<body style="margin:40px"  ng-app="app" ng-controller="ctrl">
+<body ng-app="app" ng-controller="ctrl">
     <angular-itempicker options="pickItemParams"></angular-itempicker>
 </body>
 <script>
@@ -27,10 +29,40 @@ app.controller("ctrl", ['$scope', function($scope) {
             value: "name",
             searchPlaceholder: "请输入搜索内容"
         },
-        sourceList: [{"id":48,"name":"11(shan123)"},{"id":49,"name":"12(shan123)"},{"id":50,"name":"13(shan123)"},{"id":51,"name":"14(shan123)"},{"id":52,"name":"15(shan123)"},{"id":53,"name":"16(shan123)"},{"id":54,"name":"17(shan123)"},{"id":55,"name":"18(shan123)"},{"id":56,"name":"19(shan123)"},{"id":57,"name":"20(shan123)"}],
+        sourceList: [{
+            "id": 1,
+            "name": "Karry"
+        }, {
+            "id": 1,
+            "name": "Karry"
+        }, {
+            "id": 3,
+            "name": "Narol"
+        }, {
+            "id": 4,
+            "name": "Leb"
+        }, {
+            "id": 5,
+            "name": "Cok"
+        }, {
+            "id": 6,
+            "name": "Yol"
+        }, {
+            "id": 7,
+            "name": "Keb"
+        }, {
+            "id": 8,
+            "name": "Tex"
+        }, {
+            "id": 9,
+            "name": "Hok"
+        }, {
+            "id": 10,
+            "name": "Zero"
+        }],
         targetList: []
     };
-}])
+}]);
 </script>
 
 </html>

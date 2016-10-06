@@ -35,7 +35,7 @@ gulp.task('uglifyjs', function() {
 gulp.task('connect', function() {
     connect.server({
         root: '../',
-        port: 9999,
+        port: 9998,
         host: 'localhost'
     });
 });

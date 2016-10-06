@@ -28,7 +28,7 @@
 #### Scope Interface  
 这两个API主要是暴露给`cellTemplate`使用。  
 - **$gridScope** 暴露当前表格的`scope`给外部使用  
-- **$rowScope** 暴露当前行的`scope`给外部使用，该scope支持刷新视图(refresh)，删除(remove)。
+- **$rowScope** 暴露当前行的`scope`给外部使用，该`scope`支持刷新视图(`refresh`)，删除(`remove`)。
 
 
 ### 依赖

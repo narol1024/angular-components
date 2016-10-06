@@ -19,7 +19,7 @@ angular.module('ui.grid').directive('angularTableRow', ['$compile', function($co
                     expandedContent.scope().$destroy();
                 }
                 var template = '<td class="td-checkbox" ng-show="::tableSettings.checkbox"><label><input type="checkbox" ng-model="tr.checked" ng-change="selectRow({tr:tr})" /></label></td>' +
-                    '<td data-td-key="{{::key}}" class="td-unit" ng-repeat="key in objectKeys(tr)" ng-init="td=tr[key]" ng-if="::tableOptions[key] && !tableOptions[key].hidden" ng-style="{\'width\':tableOptions[key].width}">' +
+                    '<td data-td-key="{{::key}}" class="td-unit" ng-repeat="key in objectKeys(tr) track by $index" ng-init="td=tr[key]" ng-if="::tableOptions[key] && !tableOptions[key].hidden" ng-style="{\'width\':tableOptions[key].width}">' +
                     '   <div ng-if="::tableOptions[key].cellTemplate" table-cell-compile="::td" class="td-inner td-tpl"></div>' +
                     '   <div ng-if="::!tableOptions[key].cellTemplate" ng-bind="::td|tableCellTrans:tableOptions[key]" title="{{::td|tableCellTrans:tableOptions[key]}}" class="td-inner td-text"></div>' +
                     '</td>';

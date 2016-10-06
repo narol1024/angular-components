@@ -2,7 +2,7 @@
 
 .angular-checkbox[disabled] { cursor: not-allowed; }
 
-.angular-checkbox + label { position: relative; display: inline-block; cursor: pointer; }
+.angular-checkbox + label { position: relative; display: inline-block; cursor: pointer; margin-bottom: 0; font-weight: normal; }
 .angular-checkbox + label:before { display: inline-block; vertical-align: middle; width: 16px; height: 16px; content: ''; border: 1px solid #1ab394; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 .angular-checkbox + label:after { position: absolute; top: 0; left: 0; display: none; content: ''; }
 .angular-checkbox + label .text { display: inline-block; vertical-align: middle; margin-left: 6px; }
