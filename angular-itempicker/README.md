@@ -5,7 +5,7 @@
 [click here](http://www.w3cin.com/demo/angular-components/angular-itempicker/)
 
 ### 说明
-一个基于bootstrap、angular的双栏穿梭框： 
+一个基于angular和angular-checkbox的双栏穿梭框： 
 ### API
 
 #### Settings
