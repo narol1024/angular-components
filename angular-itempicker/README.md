@@ -7,12 +7,14 @@
 ### 说明
 一个基于bootstrap、angular的双栏穿梭框： 
 ### API
+
 #### Settings
 - **key** 数据值索引，默认为`id`  
 - **value** 数据值，默认为`name`  
 - **showSearch** 是否显示搜索栏，默认为true  
-- **searchPlaceholder** 搜索的文案，默认为`请输入搜索内容`  
-### List
+- **searchPlaceholder** 搜索的文案，默认为`请输入搜索内容`   
+
+#### List
 - **sourceList** 左栏数据源，格式为json数组，默认为空  
 - **targetList** 右栏数据源，格式为json数组，默认为空  
 
