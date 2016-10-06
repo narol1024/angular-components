@@ -19,7 +19,7 @@ angular.module('ui.checkbox', [])
                     (angular.isDefined(scope.text) ?
                         '<span class="text">' + (scope.text) + '</span>' : '') +
                     '</label>';
-                element.attr('id', checkboxId).after(checkboxElement);
+                element.addClass('angular-checkbox').attr('id', checkboxId).after(checkboxElement);
                 element.bind('click', function() {
                     options.onCheck(scope);
                     scope.$applyAsync();

@@ -15,7 +15,7 @@
 **html代码**
 ```html
 <body ng-app="app" ng-controller="ctrl">
-    <input angular-checkbox="options" class="angular-checkbox" type="checkbox" name="checkbox" ng-model="checked" ng-true-value="'YES'" ng-false-value="'NO'" value="click me!" />
+    <input angular-checkbox="options" type="checkbox" name="checkbox" ng-model="checked" ng-true-value="'YES'" ng-false-value="'NO'" value="click me!" />
     <h3>{{checked}}</h3>
 </body>
 ```

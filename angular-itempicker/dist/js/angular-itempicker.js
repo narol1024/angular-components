@@ -65,11 +65,11 @@ angular.module('ui.itempicker')
                 '      <input type="text" ng-model="search.leftName" placeholder="{{::settings.searchPlaceholder}}" />' +
                 '   </div>' +
                 '   <div class="select-all">' +
-                '      <input angular-checkbox="checkboxLeftAllOptions" ng-disabled="sourceListFiltered.length === 0" class="angular-checkbox" type="checkbox" ng-model="selectAllLeft" ng-true-value="true" ng-false-value="false" value="sourceListFiltered.length+\'条\'" />' +
+                '      <input angular-checkbox="checkboxLeftAllOptions" ng-disabled="sourceListFiltered.length === 0" type="checkbox" ng-model="selectAllLeft" ng-true-value="true" ng-false-value="false" value="sourceListFiltered.length+\'条\'" />' +
                 '   </div>' +
                 '   <div class="list">' +
                 '      <div class="item" ng-repeat="item in options.sourceList | filter:getSourceFilter() as sourceListFiltered">' +
-                '         <input angular-checkbox="checkboxLeftOptions" class="angular-checkbox" type="checkbox" ng-model="item.checked" ng-true-value="true" ng-false-value="false" value="item[settings.value]" />' +
+                '         <input angular-checkbox="checkboxLeftOptions" type="checkbox" ng-model="item.checked" ng-true-value="true" ng-false-value="false" value="item[settings.value]" />' +
                 '      </div>' +
                 '   </div>' +
                 '</div>',
@@ -133,11 +133,11 @@ angular.module('ui.itempicker')
                 '      <input type="text" ng-model="search.rightName" placeholder="{{::settings.searchPlaceholder}}" />' +
                 '   </div>' +
                 '   <div class="select-all">' +
-                '      <input angular-checkbox="checkboxRightAllOptions" ng-disabled="targetListFiltered.length === 0" class="angular-checkbox" type="checkbox" ng-model="selectAllRight" ng-true-value="true" ng-false-value="false" value="targetListFiltered.length+\'条\'" />' +
+                '      <input angular-checkbox="checkboxRightAllOptions" ng-disabled="targetListFiltered.length === 0" type="checkbox" ng-model="selectAllRight" ng-true-value="true" ng-false-value="false" value="targetListFiltered.length+\'条\'" />' +
                 '   </div>' +
                 '   <div class="list">' +
                 '       <div class="item" ng-repeat="item in options.targetList | filter:getTargetFilter() as targetListFiltered">' +
-                '         <input angular-checkbox="checkboxRightOptions"  class="angular-checkbox" type="checkbox" ng-model="item.checked" ng-true-value="true" ng-false-value="false" value="item[settings.value]" />' +
+                '         <input angular-checkbox="checkboxRightOptions" type="checkbox" ng-model="item.checked" ng-true-value="true" ng-false-value="false" value="item[settings.value]" />' +
                 '       </div>' +
                 '   </div>' +
                 '</div>',
