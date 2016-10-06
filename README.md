@@ -9,7 +9,7 @@
 - [angular-confirm](https://github.com/linjinying/angular-components/tree/master/angular-confirm)(确认提示框)
 - [angular-datetimepicker](https://github.com/linjinying/angular-components/tree/master/angular-datetimepicker)(时间日期选择器)
 - [angular-grid](https://github.com/linjinying/angular-components/tree/master/angular-grid)(表格)
-- angular-itempicker(左右栏穿梭)
+- [angular-itempicker](https://github.com/linjinying/angular-components/tree/master/angular-itempicker)(左右栏穿梭)
 - angular-message(消息提示)
 - angular-pagination(分页)
 - [angular-datetime](https://github.com/linjinying/angular-components/tree/master/angular-datetime)(时间工具类)
