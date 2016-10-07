@@ -1,0 +1,46 @@
+$circleSize:100px;
+$circleBorder:5px solid #ccc;
+$handlerSize:10px;
+$handlerColor:#dedede;
+$textColor:#000;
+$textSize:16px;
+.circle {
+    position: relative;
+    width: $circleSize;
+    height: $circleSize;
+    border: $circleBorder;
+    border-radius: 50%;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    .handler {
+        position: absolute;
+        height: $handlerSize;
+        width: $handlerSize;
+        background-color: $handlerColor;
+        border-radius: 50%;
+        box-sizing: border-box;
+        cursor: default;
+    }
+    .text-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: table;
+        width: $circleSize - $handlerSize;
+        height: $circleSize - $handlerSize;
+        box-sizing: border-box;
+        color: $textColor;
+        .text {
+            display: table-cell;
+            box-sizing: border-box;
+            text-align: center;
+            vertical-align: middle;
+            word-break: break-all;
+            font-size: $textSize;
+            font-family: 'arial';
+            cursor: default;
+            user-select: none;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>circleSlider</title>
+    <link rel="stylesheet" href="../dist/css/angular-circle-slider.min.css">
+    <script src="../bower_components/jquery/jquery.min.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <style>
+    body {
+        margin: 40px;
+    }
+
+    .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        margin: 0 0 100px 200px;
+        background-color: #f1f1f1;
+    }
+
+    .box2 {
+        display: inline-block;
+        width: 50px;
+        margin: 0 0 100px 200px;
+        height: 50px;
+        background-color: #ccc;
+    }
+    </style>
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+    <div circle-slider="options"></div>
+    <div class="box" style="transform:rotate({{options.value}}deg)"></div>
+    <div class="box2" style="box-shadow:{{options.value | boxshadow}}"></div>
+</body>
+<script src="../src/js/angular-circle-slider.js"></script>
+<script>
+var app = angular.module('app', ['ui.circleSlider']);
+app.controller('ctrl', ['$scope', function($scope) {
+    $scope.options = {
+        onStart:function(value){
+            console.info('startValue:' + value);
+        },
+        onChange:function(value){
+            console.info('currentValue:' + value);
+        },
+        onFinish:function(value){
+            console.info('endValue:' + value);
+        }
+    }
+}]);
+app.filter('boxshadow', function() {
+    return function(object) {
+        function setShadow(angle, distance, blur, color) {
+            angle = (270 + angle) * ((Math.PI) / 180);
+            x = Math.round(distance * Math.cos(angle));
+            y = Math.round(distance * Math.sin(angle));
+            blur = Math.round(blur);
+            return x + 'px ' + y + 'px ' + blur + 'px ' + color;
+        }
+        return setShadow(object, 20, 5, "rgba(0,0,0,1)");
+    }
+});
+</script>
+
+</html>
