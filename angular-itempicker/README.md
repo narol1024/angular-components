@@ -1,4 +1,5 @@
 ## angular-itempicker
+===========================
 ![angular-itempicker](https://github.com/linjinying/angular-components/blob/master/angular-itempicker/screenshot.png)  
 
 ### demo
