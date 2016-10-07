@@ -1,5 +1,4 @@
 ## angular-grid
-===========================
 ![angular-grid](https://github.com/linjinying/angular-components/blob/master/angular-grid/screenshot.png)  
 
 ### demo

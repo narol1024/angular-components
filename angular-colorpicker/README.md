@@ -1,5 +1,4 @@
-### angular-colorpicker
-===========================
+## angular-colorpicker
 ![angular-colorpicker](https://github.com/linjinying/angular-components/blob/master/angular-colorpicker/screenshot.png)  
 #### Demo
 [click here](http://w3cin.com/demo/angular-components/angular-colorpicker/)

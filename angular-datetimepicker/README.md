@@ -1,5 +1,4 @@
 ## angular-datetimepicker
-===========================
 ![angular-datetimepicker](https://github.com/linjinying/angular-components/blob/master/angular-datetimepicker/screenshot.png)  
 ![angular-datetimepicker](https://github.com/linjinying/angular-components/blob/master/angular-datetimepicker/screenshot2.png)  
 ### demo
