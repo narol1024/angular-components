@@ -31,7 +31,7 @@ angular.module('ui.checkbox', [])
                 });
                 scope.$on('$destroy', function() {
                     valueWatcher();
-                })
+                });
             }
         };
     }]);
