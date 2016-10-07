@@ -3,10 +3,10 @@ angular.module('ui.message', [])
     var Message = {};
     var timer;
     var messageTypes = [
-        {type:"success",icon:"icon-ok"},
-        {type:"error",icon:"icon-exclamation-sign"},
-        {type:"loading",icon:"icon-refresh icon-spin"},
-        {type:"warning",icon:"icon-warning-sign"}
+        {type:"success"},
+        {type:"error"},
+        {type:"loading"},
+        {type:"warning"}
     ];
     var messageId;
     Message.removeMessage = function() {
@@ -25,20 +25,19 @@ angular.module('ui.message', [])
     Message.popMessage = function(options) {
         var _this = this;
         this.removeMessage();
-        messageId = new Date().getTime();
+        messageId = (((1 + Math.random()) * new Date().getTime()) | 0).toString(16).substring(1);
         if (options.mask) {
             var maskTemplate = angular.element("<div class='ui-message-mask' id='ui-message-mask-"+messageId+"'></div>");
             maskTemplate.css('z-index',messageId);
             angular.element(document.body).append(maskTemplate);
         }
-        var iconTemplate =
-            '<span class="icon '+messageTypes[options.type || 0].icon+'"></span>';
-        var tipsTemplate = angular.element("<div class='ui-message' id='ui-message-"+messageId+"'>" +iconTemplate + options.message + '</div>');
+        var tipsTemplate = angular.element("<div class='ui-message' id='ui-message-"+messageId+"'>" +options.message + '</div>');
         angular.element(document.body).append(tipsTemplate);
+        var currenyItem = messageTypes[options.type || 0] || messageTypes[0];
         $(tipsTemplate).css({
             'z-index': new Date().getTime(),
             'marginLeft': -$(tipsTemplate).outerWidth() / 2
-        }).addClass(messageTypes[options.type || 0].type);
+        }).addClass(currenyItem.type);
         if (options.time) {
             clearTimeout(timer);
             timer = setTimeout(function() {

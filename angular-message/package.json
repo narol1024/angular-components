@@ -1,7 +1,7 @@
 {
-  "name": "angular-mesage",
+  "name": "angular-datetimepicker",
   "version": "1.0.0",
-  "description": "angular-mesage",
+  "description": "angular-datetimepicker",
   "main": "index.js",
   "dependencies": {
     "gulp": "^3.9.0",

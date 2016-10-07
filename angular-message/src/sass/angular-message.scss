@@ -24,7 +24,7 @@ $warning-color:#f0ad4e;
     background-color: $success-color;
     color: #fff;
     font-size: 16px;
-    animation:ani-cui-message 0.3s;
+    animation:ani-ui-message 0.3s;
     &.success{
         background-color: $success-color;
     }
@@ -37,14 +37,10 @@ $warning-color:#f0ad4e;
     &.warning{
         background-color: $warning-color;
     }
-    .icon{
-        font-size: 14px;
-        margin-right:6px;
-    }
 }
 
 
-@keyframes ani-cui-message {
+@keyframes ani-ui-message {
     0% {
         opacity:0;
         transform: translate(0, -100px);
