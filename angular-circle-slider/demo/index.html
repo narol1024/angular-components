@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../dist/css/angular-circle-slider.min.css">
     <script src="../bower_components/jquery/jquery.min.js"></script>
     <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../dist/js/angular-circle-slider.js"></script>
     <style>
     body {
         margin: 40px;
@@ -35,7 +36,7 @@
     <div class="box" style="transform:rotate({{options.value}}deg)"></div>
     <div class="box2" style="box-shadow:{{options.value | boxshadow}}"></div>
 </body>
-<script src="../src/js/angular-circle-slider.js"></script>
+
 <script>
 var app = angular.module('app', ['ui.circleSlider']);
 app.controller('ctrl', ['$scope', function($scope) {

@@ -27,6 +27,7 @@
 var app = angular.module('app', ['ui.circleSlider']);
 app.controller('ctrl', ['$scope', function($scope) {
     $scope.options = {
+    	value:60,
         onStart:function(value){
             console.info('startValue:' + value);
         },
