@@ -1,6 +1,8 @@
 ## angular-permission
-### 版本
-version 1.0.0
+
+### demo
+[click here](http://www.w3cin.com/demo/angular-components/angular-permission/)
+
 ### 说明
 一个基于angular的视图权限指令
 ### 依赖  
@@ -26,5 +28,3 @@ app.config(["ngPermissionProvider", function(ngPermissionProvider) {
 app.controller("ctrl", ["$scope", function($scope) {
 }]);
 ```
-### future
-根据业务需求，自己扩展想要的功能。

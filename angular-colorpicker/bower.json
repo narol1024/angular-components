@@ -1,6 +1,6 @@
 {
-  "name": "angular-colorpicker",
-  "description": "angular-colorpicker",
+  "name": "angular-components",
+  "description": "angular-components",
   "main": [
     "dist/js/angular-colorpicker.min.js",
     "dist/css/angular-colorpicker.min.css"
@@ -18,7 +18,7 @@
     "color",
     "angular"
   ],
-  "homepage": "https://github.com/linjinying/angular-colorpicker",
+  "homepage": "https://github.com/linjinying/angular-components",
   "moduleType": [],
   "ignore": [
     "**/.*",

@@ -11,9 +11,8 @@
 - [angular-grid](https://github.com/linjinying/angular-components/tree/master/angular-grid)(表格)
 - [angular-itempicker](https://github.com/linjinying/angular-components/tree/master/angular-itempicker)(左右栏穿梭)
 - [angular-message](https://github.com/linjinying/angular-components/tree/master/angular-message)(消息提示)
-- angular-pagination(分页)
 - [angular-datetime](https://github.com/linjinying/angular-components/tree/master/angular-datetime)(时间工具类)
-- angular-permission(权限控制工具类)
+- [angular-permission](https://github.com/linjinying/angular-components/tree/master/angular-permission)(权限控制工具类)
 
 ### 给我提bug
 以上组件已经应用到实际项目中，如果发现bug，欢迎 [在这里](https://github.com/linjinying/angular-components/issues) 给我提bug。

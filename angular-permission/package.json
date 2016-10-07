@@ -1,7 +1,7 @@
 {
-  "name": "angular-permission",
+  "name": "angular-datetime",
   "version": "1.0.0",
-  "description": "angular-permission",
+  "description": "angular-datetime",
   "main": "index.js",
   "dependencies": {
     "gulp": "^3.9.0",
