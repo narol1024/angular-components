@@ -5,7 +5,7 @@
 [click here](http://www.w3cin.com/demo/angular-components/angular-grid/)
 
 ### 说明
-一个基于bootstrap、angular的表格组件。  
+一个基于bootstrap、angular的性能表现良好的表格组件。  
 ### API
 #### Settings
 
