@@ -6,7 +6,7 @@
 - [angular-autocomplete](https://github.com/linjinying/angular-components/tree/master/angular-autocomplete)(表单输入提示)
 - [angular-checkbox](https://github.com/linjinying/angular-components/tree/master/angular-checkbox)(checkbox表单)
 - [angular-colorpicker](https://github.com/linjinying/angular-components/tree/master/angular-colorpicker)(颜色选择器)
-- [angular-colorpicker](https://github.com/linjinying/angular-components/tree/master/angular-circle-slider)(圆环slider)
+- [angular-circle-slider](https://github.com/linjinying/angular-components/tree/master/angular-circle-slider)(圆环slider)
 - [angular-confirm](https://github.com/linjinying/angular-components/tree/master/angular-confirm)(确认提示框)
 - [angular-datetimepicker](https://github.com/linjinying/angular-components/tree/master/angular-datetimepicker)(时间日期选择器)
 - [angular-grid](https://github.com/linjinying/angular-components/tree/master/angular-grid)(表格)
