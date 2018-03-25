@@ -2,7 +2,7 @@
 ![angular-confirm](https://github.com/linjinying/angular-components/blob/master/angular-confirm/screenshot.png)  
 
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-confirm/)
+[click here](https://techjs.cn/demo/angular-components/angular-confirm/)
 ### 说明
 一个基于angular、angular-bootstrap的确认框组件，目前支持的API有：  
 

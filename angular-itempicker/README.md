@@ -2,7 +2,7 @@
 ![angular-itempicker](https://github.com/linjinying/angular-components/blob/master/angular-itempicker/screenshot.png)  
 
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-itempicker/)
+[click here](https://techjs.cn/demo/angular-components/angular-itempicker/)
 
 ### 说明
 一个基于angular和angular-checkbox的双栏穿梭框： 

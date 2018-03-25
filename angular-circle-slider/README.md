@@ -2,7 +2,7 @@
 ![angular-circle-slider](https://github.com/linjinying/angular-components/blob/master/angular-circle-slider/screenshot.png)  
 
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-circle-slider/)
+[click here](https://techjs.cn/demo/angular-components/angular-circle-slider/)
 
 ### 说明
 一个基于angularJS的圆形slider(a circular slider based on angularJS)，目前支持的API有： 

@@ -1,7 +1,7 @@
 ## angular-permission
 
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-permission/)
+[click here](https://techjs.cn/demo/angular-components/angular-permission/)
 
 ### 说明
 一个基于angular的视图权限指令

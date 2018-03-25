@@ -1,6 +1,6 @@
 ## angular-message
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-message/)
+[click here](https://techjs.cn/demo/angular-components/angular-message/)
 
 ### 说明
 一个基于`bootstrap`、`angular`的消息提示，目前支持的API有：  

@@ -2,7 +2,7 @@
 ![angular-grid](https://github.com/linjinying/angular-components/blob/master/angular-grid/screenshot.png)  
 
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-grid/)
+[click here](https://techjs.cn/demo/angular-components/angular-grid/)
 
 ### 说明
 一个基于bootstrap、angular的性能表现良好的表格组件。  

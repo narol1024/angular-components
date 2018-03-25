@@ -1,7 +1,7 @@
 ## angular-datetime
 
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-datetime/)
+[click here](https://techjs.cn/demo/angular-components/angular-datetime/)
 
 ### 说明
 一个基于angular的时间工具类，目前支持的API有：  

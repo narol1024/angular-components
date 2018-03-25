@@ -2,7 +2,7 @@
 ![angular-datetimepicker](https://github.com/linjinying/angular-components/blob/master/angular-datetimepicker/screenshot.png)  
 ![angular-datetimepicker](https://github.com/linjinying/angular-components/blob/master/angular-datetimepicker/screenshot2.png)  
 ### demo
-[click here](http://www.w3cin.com/demo/angular-components/angular-datetimepicker/)
+[click here](https://techjs.cn/demo/angular-components/angular-datetimepicker/)
 ### 说明
 一个基于angular、bootstrap-datetimepicker的时间选择器，目前支持的API有：  
 - **ngModel** 接收时间格式为 yyyy-mm-dd hh:ii:ss  

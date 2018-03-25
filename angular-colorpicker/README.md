@@ -1,7 +1,7 @@
 ## angular-colorpicker
 ![angular-colorpicker](https://github.com/linjinying/angular-components/blob/master/angular-colorpicker/screenshot.png)  
 #### Demo
-[click here](http://w3cin.com/demo/angular-components/angular-colorpicker/)
+[click here](https://techjs.cn/demo/angular-components/angular-colorpicker/)
 
 一个基于angularJS的颜色选择器，目前具备以下特性：
 - **3种选色模式**  经典模式、自定义选择模式、历史记录
